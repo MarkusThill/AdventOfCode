@@ -1,7 +1,6 @@
 import numpy as np
 
 def day8_1():
-    # Using readlines()
     file1 = open('input8_1.txt', 'r')
     lines = file1.readlines()
     lines = [l.strip() for l in lines]
@@ -48,7 +47,6 @@ def day8_1():
         x = np.maximum(x, X[:, i])
         # print(x)
     M_global |= M
-
 
     print("Solution day 8.1:", M_global.sum())
 
@@ -115,8 +113,5 @@ def day8_2():
     print("Solution day 8.2:\n", M_global.max())
 
 
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     day8_2()
