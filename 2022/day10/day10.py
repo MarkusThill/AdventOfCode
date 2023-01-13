@@ -2,7 +2,6 @@ import numpy as np
 
 
 def day10_1():
-    # Using readlines()
     file1 = open('input10_1.txt', 'r')
     lines = file1.readlines()
     lines = [l.strip() for l in lines]
@@ -23,20 +22,15 @@ def day10_1():
 
     print("Solution day 10.1:", sum(signal_strength_list))
 
-    print(X_sum)
-    #screen = np.array(["."] * (6 * 40))
     screen = []
     row = []
     for c in range(1, 242):
         if (c-1) % 40 == 0:
             screen.append(row)
-            #print(row)
             row = []
         idx = np.where(X_sum[:, 0] < c)[0].max()
         sprite_pos = X_sum[idx, 1]
         pixel_pos = (c-1)%40
-        #pixel_pos += (c-1) // 40
-        #rint("sprite_pos:", sprite_pos, "pixel_pos:",pixel_pos)
         symbol = '#' if pixel_pos >= sprite_pos - 1 and pixel_pos <= sprite_pos + 1 else "."
         row.append(symbol)
         print("".join(row))
@@ -45,9 +39,6 @@ def day10_1():
     for row in screen:
         print("".join(row))
 
-    #print(screen)
 
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     day10_1()
