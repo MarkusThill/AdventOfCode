@@ -8,7 +8,6 @@ def update_tail(h, t):
 
 
 def day9_1():
-    # Using readlines()
     file1 = open('input9_1.txt', 'r')
     lines = file1.readlines()
     lines = [l.strip() for l in lines]
@@ -21,7 +20,6 @@ def day9_1():
 
     H = np.array([grid_size // 2, grid_size // 2])
     tail_list = [np.array(H) for _ in range(9)]
-    # print("Length:", len(tail_list))
 
     for inst in lines:
         print(inst)
@@ -46,10 +44,8 @@ def day9_1():
                 assert (T >= 0).all(), "Grid is too small"
                 # When to update tail?
                 # None of the previous tails should have the update position
-                # print(j, np.stack(tail_list))
                 cmp = (T == np.stack(tail_list))[:j].all(axis=1).any()
-                #print(j, cmp)
-                # print(T.shape, cmp.shape)
+
                 if not cmp:
                     tail_list[j] = np.array(T)
                     #print("updated: ", j, T)
@@ -57,11 +53,9 @@ def day9_1():
                 if j == len(tail_list) - 1:
                     grid[T[0], T[1]] |= True
                 new_H = np.array(T)
-        # print("Sum:", grid.sum())
 
     print("Solution day 9.1/2:", grid.sum())
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     day9_1()
