@@ -3,7 +3,6 @@ import re
 import ast
 import math
 import functools
-#from interval import interval, inf, imath
 import portion as P
 
 
@@ -16,7 +15,6 @@ def distance_from_row(p, row):
 
 
 def day15_1():
-    # Using readlines()
     file1 = open('input15_1.txt', 'r')
     lines = file1.readlines()
     lines = [l.strip() for l in lines]
@@ -67,7 +65,6 @@ def day15_1():
 
 # Needs some optimizations using map() etc.
 def day15_2():
-    # Using readlines()
     file1 = open('input15_1.txt', 'r')
     lines = file1.readlines()
     lines = [l.strip() for l in lines]
@@ -118,6 +115,5 @@ def day15_2():
 
     print("No Solution was found! Seems like the program is wrong!")
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     day15_2()
