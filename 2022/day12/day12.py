@@ -34,9 +34,6 @@ def day12_1():
                     edges.append((node, node_next, {"weight": 1}))
 
     G.add_edges_from(edges)
-    #pos = nx.planar_layout(G)
-
-    #print(G, X.shape[0], X.shape[1])
 
     p1 = nx.shortest_path_length(G, source="S", target="E", weight="weight", method='dijkstra')
 
