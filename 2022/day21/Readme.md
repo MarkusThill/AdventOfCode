@@ -1,4 +1,4 @@
-#--- Day 21: Monkey Math ---
+# --- Day 21: Monkey Math ---
 
 You can find the original problem statement here: [https://adventofcode.com/2022/day/21](https://adventofcode.com/2022/day/21)
 
