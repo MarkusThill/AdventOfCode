@@ -23,7 +23,6 @@ def map_op(op_list):
 
 
 def day11_1():
-    # Using readlines()
     file1 = open('input11_1.txt', 'r')
     lines = file1.readlines()
     lines = [l.strip() for l in lines]
@@ -64,7 +63,6 @@ def day11_1():
         i += n_lines_monkey
         monkey_idx += 1
 
-    # print(monkeys)
     for round in range(20):
         for m in monkeys:
             print("Monkey", m["idx"], ":")
@@ -96,7 +94,6 @@ def day11_1():
 
 
 def day11_2():
-    # Using readlines()
     file1 = open('input11_1.txt', 'r')
     lines = file1.readlines()
     lines = [l.strip() for l in lines]
@@ -158,10 +155,6 @@ def day11_2():
                 m["counter"] += 1
             m["items"] = []
 
-        #print("Done with round", round + 1, ":")
-        #for m in monkeys:
-        #    print("Monkey", m["idx"], ":", m["items"])
-
         if round+1 in [1, 20, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000]:
             print("== After round", round + 1, "==")
             inspections = []
@@ -174,6 +167,5 @@ def day11_2():
     print("Solution day 11.2:", inspections[-1] * inspections[-2])
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     day11_2()
