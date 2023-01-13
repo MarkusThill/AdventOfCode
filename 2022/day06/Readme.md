@@ -1,0 +1,5 @@
+# --- Day 6: Tuning Trouble ---
+
+You can find the original problem statement here: [https://adventofcode.com/2022/day/6](https://adventofcode.com/2022/day/6)
+
+The problem statement describes a task of detecting a specific type of marker in a data stream, where a marker is a sequence of a certain number of distinct characters. In Part 1, the task is to find the first position in the data stream where the four most recently received characters are all different. In Part 2, the task is to find the first position in the data stream where the 14 most recently received characters are all different. The examples in the problem statement provide inputs and expected outputs for the function that needs to be written, and it is up to the implementer to figure out the algorithm to solve this problem. The input is a sequence of characters and the expected output for part 1 is an integer representing the number of characters before the first start-of-packet marker is detected and for part 2, the expected output is an integer representing the number of characters before the first start-of-message marker is detected

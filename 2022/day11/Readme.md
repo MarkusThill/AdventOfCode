@@ -1,0 +1,9 @@
+# --- Day 11: Monkey in the Middle ---
+
+You can find the original problem statement here: [https://adventofcode.com/2022/day/11](https://adventofcode.com/2022/day/11)
+
+
+In this exercise, the player's character has lost items to monkeys who are playing Keep Away with them. The player must predict where the monkeys will throw the items based on the player's "worry level" for each item. The monkeys each have several attributes: a list of items they are currently holding, an operation that dictates how the player's worry level changes as the monkey inspects an item, a test that determines where the monkey throws the item next, and instructions for what happens to the item if the test is true or false. The monkeys take turns inspecting and throwing items in a process called a "round". The goal of the exercise is to figure out which monkeys to chase by counting the number of items they inspect over 20 rounds and to determine the level of monkey business after 20 rounds of activity.
+
+
+In Part 2 of the exercise, the character's relief that a monkey's inspection didn't damage an item no longer causes the character's worry level to be divided by three. This means the worry levels will increase at a faster rate than before. The goal is to keep the worry levels manageable while the monkeys inspect and throw items over 10000 rounds. The player needs to find another way to keep the worry levels in check. The goal of the exercise is still to determine the level of monkey business after 10000 rounds, but now with the new rule in place that the character's worry level is no longer divided by three after each item is inspected.
