@@ -2,7 +2,6 @@ import numpy as np
 
 
 def day6_1():
-    # Using readlines()
     file1 = open('input6_1.txt', 'r')
     lines = file1.readlines()
     lines = [l.strip() for l in lines]
@@ -22,6 +21,5 @@ def day6_1():
         print("Solution day 6.1:", solution)
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     day6_1()
