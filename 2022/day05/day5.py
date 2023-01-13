@@ -2,7 +2,6 @@ import numpy as np
 
 
 def day5_1():
-    # Using readlines()
     file1 = open('input5_1.txt', 'r')
     lines = file1.readlines()
     n = 4
@@ -106,6 +105,5 @@ def day5_2():
         solution += s[-1]
     print("Solution day 5.2:", solution)
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     day5_2()
