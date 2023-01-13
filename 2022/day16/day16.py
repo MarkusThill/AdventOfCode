@@ -44,7 +44,6 @@ def tree2(G, node, valve_state, time_left, elephants_left, transposition):
 
 
 def day16_1_2():
-    # Using readlines()
     file1 = open('input16_1.txt', 'r')
     lines = file1.readlines()
     lines = [l.strip() for l in lines]
