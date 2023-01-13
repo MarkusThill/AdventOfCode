@@ -41,7 +41,6 @@ def day20_2():
     print("Solution day 20.2:", sol)
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     day20_1()
     day20_2()
