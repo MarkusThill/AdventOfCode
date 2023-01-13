@@ -1,3 +1,5 @@
+<img src="https://github.com/MarkusThill/AdventOfCode/blob/f41e36ffeee570973016dfa9cc9afccdeb681521/2022/day22/monkeys_cube.png" width="500" height="500">
+
 # --- Day 22: Monkey Map ---
 
 You can find the original problem statement here: [https://adventofcode.com/2022/day/22](https://adventofcode.com/2022/day/22)
