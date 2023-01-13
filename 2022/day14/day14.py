@@ -71,7 +71,6 @@ def day14_1():
 
 
 def day14_2():
-    # Using readlines()
     file1 = open('input14_1.txt', 'r')
     lines = file1.readlines()
     lines = [l.strip() for l in lines]
@@ -91,8 +90,6 @@ def day14_2():
     all_y = [e[1] for l in lines for e in l]
 
     shape = (max(all_y)+1, max(all_x) - min(all_x)+1)
-    print(shape)
-
     X = np.full(shape, '.')
 
 
@@ -146,6 +143,5 @@ def day14_2():
         #print(fell_out)
     print("Solution day 14.2:", i+1)
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     day14_2()
