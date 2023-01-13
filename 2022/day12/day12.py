@@ -12,7 +12,6 @@ def get_ord(x):
 
 
 def day12_1():
-    # Using readlines()
     file1 = open('input12_1.txt', 'r')
     lines = file1.readlines()
     lines = [l.strip() for l in lines]
@@ -82,7 +81,5 @@ def day12_2():
 
     print("Solution day 12.2:", min(all_path_lengths))
 
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     day12_2()
