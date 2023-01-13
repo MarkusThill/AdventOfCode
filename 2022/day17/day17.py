@@ -6,7 +6,6 @@ import functools
 import portion as P
 import networkx as nx
 import time
-
 from itertools import cycle
 
 
@@ -94,18 +93,8 @@ def day17_1():
         while at_rest > 0:
             if not toggle:  # alternate between blowing wind and falling
                 # apply wind
-                # old_sx = s_x
                 s_x = apply_wind(X, s, s_x, s_y, next(wind))
-                # rng_y = slice(s_y - s.shape[0], s_y)
-                # rng_x = slice(s_x, s_x + s.shape[1])
-                # if ((X[rng_y,rng_x] + s)>=2).sum() != 0:
-                # if has_collision(X, s_x, s_y, s):
-                #    s_x = old_sx # undo move, since we had a collision
             else:
-
-                # rng_x = slice(s_x, s_x + s.shape[1])
-                # rng_y = slice(s_y - s.shape[0]-1, s_y-1)
-                # if ((X[rng_y,rng_x] + s)>=2).sum() == 0:
                 if not has_collision(X, s_x, s_y - 1, s):
                     s_y -= 1
                 else:
@@ -117,8 +106,6 @@ def day17_1():
         X[rng_y, rng_x] = s
 
     print("Solution day 17.1", get_tower_top(X) - 1)
-    #print(X[get_tower_top(X) - 10:get_tower_top(X), :])
-
 
 def signature(X):
     return tuple(X[get_tower_top(X) - 50:get_tower_top(X)].flatten().tolist())
@@ -204,14 +191,9 @@ def day17_2():
 
         height_tracker[i + 1] = get_tower_top(X)  # off by one here..
 
-    # print("Solution day 17.1", get_tower_top(X)-1)
     print("Solution day 17.2:",
           (1_000_000_000_000 // cycle_len) * cycle_height + height_tracker[1_000_000_000_000 % cycle_len])
 
-    1514285714288
-    1514285714288
-    1591279069761
-    1591860465109
 
 
 if __name__ == '__main__':
