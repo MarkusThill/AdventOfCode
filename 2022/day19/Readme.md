@@ -1,4 +1,4 @@
-<img src="https://your-image-url.type" width="100" height="100">
+<img src="https://github.com/MarkusThill/AdventOfCode/blob/890e8af0ad05a019a51cb65511a411d7e5a9953d/2022/day19/robots.png" width="500" height="500">
 
 # --- Day 19: Not Enough Minerals ---
 
