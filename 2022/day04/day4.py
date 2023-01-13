@@ -1,9 +1,3 @@
-# This is a sample Python script.
-
-# Press Umschalt+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
 def day4_1():
     # Using readlines()
     file1 = open('input4_1.txt', 'r')
@@ -26,7 +20,6 @@ def day4_1():
 
 
 def day4_2():
-    # Using readlines()
     file1 = open('input4_1.txt', 'r')
     lines = file1.readlines()
     lines = [l.strip() for l in lines]
@@ -49,6 +42,5 @@ def day4_2():
     print("Solution day 4.2:", counter)
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     day4_2()
