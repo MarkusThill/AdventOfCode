@@ -1,3 +1,5 @@
+<img src="https://github.com/MarkusThill/AdventOfCode/blob/6bd3026912af2260a9409f4c3f728990596d909c/2022/day01/elves-snacks.png" width="500" height="500">
+
 # --- Day 1: Calorie Counting ---
 
 You can find the original problem statement here: [https://adventofcode.com/2022/day/1](https://adventofcode.com/2022/day/1)
