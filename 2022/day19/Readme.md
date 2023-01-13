@@ -1,3 +1,5 @@
+<img src="https://your-image-url.type" width="100" height="100">
+
 # --- Day 19: Not Enough Minerals ---
 
 You can find the original problem statement here: [https://adventofcode.com/2022/day/19](https://adventofcode.com/2022/day/19)
