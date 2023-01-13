@@ -98,6 +98,5 @@ def day7_1():
     print("Solution day 7.2:", solution.size)
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     day7_1()
