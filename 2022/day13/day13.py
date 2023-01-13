@@ -82,6 +82,5 @@ def day13_2():
     print("Solution day 13.2:", index1 * index2)
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     day13_2()
