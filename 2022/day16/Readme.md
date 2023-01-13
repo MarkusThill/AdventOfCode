@@ -1,3 +1,5 @@
+<img src="https://your-image-url.type" width="500" height="500">
+
 # --- Day 16: Proboscidea Volcanium ---
 
 You can find the original problem statement here: [https://adventofcode.com/2022/day/16](https://adventofcode.com/2022/day/16)
@@ -5,7 +7,7 @@ You can find the original problem statement here: [https://adventofcode.com/2022
 
 Part 1:
 
-You are in a cave that and you need to get the elephants out of there before the vulcano erupts. You are given a network of pipes and pressure-release valves and the flow rate of each valve if it were opened. You are also given the tunnels that can be used to move between the valves. You can only move from one valve to another in one minute and it takes one minute to open a valve. Your goal is to release as much pressure as possible within 30 minutes. You need to find the most pressure you can release by working out the steps to release it.
+You are in a cave that and you need to get the elephants out of there before the volcano erupts. You are given a network of pipes and pressure-release valves and the flow rate of each valve if it were opened. You are also given the tunnels that can be used to move between the valves. You can only move from one valve to another in one minute and it takes one minute to open a valve. Your goal is to release as much pressure as possible within 30 minutes. You need to find the most pressure you can release by working out the steps to release it.
 
 Part 2:
 
