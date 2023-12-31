@@ -43,36 +43,12 @@ def find_start(grid):
 def right_neighbors_in_direction_of_travel(n, dx, dy):
     if dx == 1:  # down
         assert n.c not in {"7", "F", "-"}, f"{n, dx, dy}"
-        # if n.c == "|":
-        #    neighs = {(0, -dx)}
-        # elif n.c == "L":
-        #    neighs = {(0, -dx), (dx, -dx), (dx, 0)}
-        # elif n.c == "J":
-        #    neighs = {(-dx, -dx)}
     elif dx == -1:  # up
         assert n.c not in {"L", "J", "-"}, f"{n, dx, dy}"
-        # if n.c == "|":
-        #    neighs = {(0, -dx)}
-        # elif n.c == "7":
-        #    neighs = {(0, -dx), (dx, -dx), (dx, 0)}
-        # elif n.c == "F":
-        #    neighs = {(-dx, -dx)}
     elif dy == 1:  # right
         assert n.c not in {"L", "F", "|"}, f"{n, dx, dy}"
-        # if n.c == "-":
-        #    neighs = {(dy, 0)}
-        # elif n.c == "7":
-        #    neighs = {(dy, -dy)}
-        # elif n.c == "J":
-        #    neighs = {(0, dy), (dy, dy), (dy, 0)}
     elif dy == -1:  # left
         assert n.c not in {"7", "J", "|"}, f"{n, dx, dy}"
-        # if n.c == "-":
-        #    neighs = {(dy, 0)}
-        # elif n.c == "L":
-        #    neighs = {(dy, -dy)}
-        # elif n.c == "F":
-        #    neighs = {(0, dy), (dy, dy), (dy, 0)}
 
     if dx != 0:
         if n.c in {"|"}:
