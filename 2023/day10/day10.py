@@ -50,20 +50,12 @@ def right_neighbors_in_direction_of_travel(n, dx, dy):
     elif dy == -1:  # left
         assert n.c not in {"7", "J", "|"}, f"{n, dx, dy}"
 
-    if dx != 0:
-        if n.c in {"|"}:
-            neighs = {(0, -dx)}
-        elif n.c in {"L", "7"}:
-            neighs = {(0, -dx), (dx, -dx), (dx, 0)}
-        elif n.c in {"J", "F"}:
-            neighs = {(-dx, -dx)}
-    if dy != 0:
-        if n.c in {"-"}:
-            neighs = {(dy, 0)}
-        elif n.c in {"7", "L"}:
-            neighs = {(dy, -dy)}
-        elif n.c in {"J", "F"}:
-            neighs = {(0, dy), (dy, dy), (dy, 0)}
+    if n.c in {"-", "|"}:
+        neighs = {(dy, -dx)}
+    elif (dx != 0 and n.c in {"L", "7"}) or (dy != 0 and n.c in {"J", "F"}):
+        neighs = {(0, dy - dx), (dy + dx, dy - dx), (dx + dy, 0)}
+    elif (dx != 0 and n.c in n.c in {"J", "F"}) or (dy != 0 and n.c in {"L", "7"}):
+        neighs = {(dy - dx, -dy - dx)}
 
     assert "neighs" in locals(), f"{n, dx, dy}"
     return {(n.x + ddx, n.y + ddy) for ddx, ddy in neighs}
