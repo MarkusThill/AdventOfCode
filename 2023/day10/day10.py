@@ -14,14 +14,14 @@ class Node:
 
     def get_ends(self, c):
         return {
-            "|": ("n", "s"),
-            "-": ("w", "e"),
-            "L": ("n", "e"),
-            "J": ("n", "w"),
-            "7": ("s", "w"),
-            "F": ("e", "s"),
+            "|": ("n", "s"),  # north & south
+            "L": ("n", "e"),  # north & east
+            "J": ("n", "w"),  # north & west
+            "7": ("s", "w"),  # south & west
+            "F": ("s", "e"),  # south & east
+            "-": ("w", "e"),  # west & east
             ".": None,
-            "S": "S",
+            "S": None,
         }[c]
 
     def move(self, in_: str):
@@ -41,20 +41,19 @@ def find_start(grid):
 
 
 def right_neighbors_in_direction_of_travel(n, dx, dy):
-    if dx == 1:  # down
-        assert n.c not in {"7", "F", "-"}, f"{n, dx, dy}"
-    elif dx == -1:  # up
-        assert n.c not in {"L", "J", "-"}, f"{n, dx, dy}"
-    elif dy == 1:  # right
-        assert n.c not in {"L", "F", "|"}, f"{n, dx, dy}"
-    elif dy == -1:  # left
-        assert n.c not in {"7", "J", "|"}, f"{n, dx, dy}"
+    if (
+        (dx == 1 and n.c in {"7", "F", "-"})
+        or (dx == -1 and n.c in {"L", "J", "-"})
+        or (dy == 1 and n.c in {"L", "F", "|"})
+        or (dy == -1 and n.c in {"7", "J", "|"})
+    ):
+        raise NotImplementedError(f"{n, dx, dy}")
 
     if n.c in {"-", "|"}:
         neighs = {(dy, -dx)}
     elif (dx != 0 and n.c in {"L", "7"}) or (dy != 0 and n.c in {"J", "F"}):
-        neighs = {(0, dy - dx), (dy + dx, dy - dx), (dx + dy, 0)}
-    elif (dx != 0 and n.c in n.c in {"J", "F"}) or (dy != 0 and n.c in {"L", "7"}):
+        neighs = {(0, dy - dx), (dx + dy, 0), (dy + dx, dy - dx)}
+    elif (dx != 0 and n.c in {"J", "F"}) or (dy != 0 and n.c in {"L", "7"}):
         neighs = {(dy - dx, -dy - dx)}
 
     assert "neighs" in locals(), f"{n, dx, dy}"
@@ -64,35 +63,34 @@ def right_neighbors_in_direction_of_travel(n, dx, dy):
 def day10():
     file1 = open("2023/day10/input_1.txt", "r")
     lines = [l.strip() for l in file1.readlines()]
-
     grid = [[Node(i, j, c) for (j, c) in enumerate(l)] for (i, l) in enumerate(lines)]
 
     x_start, y_start = find_start(grid)
-    for guess_shape in ["-"]:  # ["|", "L", "J", "7", "F", "-"]:
+    for start_shape_guess in ["|", "L", "J", "7", "F", "-"]:
         try:
-            grid[x_start][y_start].c = guess_shape
+            grid[x_start][y_start].c = start_shape_guess
             for which_end in [1, 0]:
                 inside_set = set()
                 x, y = x_start, y_start
                 n = grid[x][y]
-                n.ends = n.get_ends(guess_shape)
+                n.ends = n.get_ends(start_shape_guess)
                 d = n.ends[which_end]
-                dx, dy, d = n.move(d)
-                n = grid[x + dx][y + dy]
-                inside_set |= right_neighbors_in_direction_of_travel(n, dx, dy)
-                path = [n]
-                while n.x != x_start or n.y != y_start:
+                # dx, dy, d = n.move(d)
+                # n = grid[x + dx][y + dy]
+                # inside_set |= right_neighbors_in_direction_of_travel(n, dx, dy)
+                # path = [n]
+                path = list()
+                while n.x != x_start or n.y != y_start or len(path) == 0:
                     dx, dy, d = n.move(d)
                     n = grid[n.x + dx][n.y + dy]
                     inside_set |= right_neighbors_in_direction_of_travel(n, dx, dy)
                     path.append(n)
-                    assert n.c != "."
-            print(f"Found the solution with shape '{guess_shape}'")
-            break  # Found a solution
+                    # assert n.c != "."
+            print(f"Found solution with pipe '{start_shape_guess}' for start 'S'!")
+            break  # Found a solution while walking in both directions
         except NotImplementedError:
-            # Guess another pipe shape
-            print(f"Pipe shape {guess_shape} did not work!")
-            continue
+            print(f"Pipe shape {start_shape_guess} did not work!")
+            continue  # Guess another pipe shape
     grid[x_start][y_start].c = "S"
 
     print(f"Solution Day 10.1: {len(path) // 2}")
@@ -112,15 +110,7 @@ def day10():
                         if (nx, ny) not in visited:
                             inside_set.add((nx, ny))
 
-    counter = 0
-    for row in grid:
-        for col in row:
-            # if col in path:
-            #    col.c = "Q"
-            if col.c == "I":
-                counter += 1
-            # print(col.c, end="")
-        # print("")
+    counter = sum(col.c == "I" for row in grid for col in row)
 
     print(f"Solution Day 10.2: {counter}")
 
