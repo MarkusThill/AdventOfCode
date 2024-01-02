@@ -35,7 +35,7 @@ def day13():
     rows_1, cols_1 = zip(*[(find_mirror(x) for x in [p, T(p)]) for p in puzzles])
     print(f"Solution Day 13.1: {100 * sum(rows_1) + sum(cols_1)}")
 
-    #
+    # ========
     # Part 2:
     #
     rows_2, cols_2 = zip(
