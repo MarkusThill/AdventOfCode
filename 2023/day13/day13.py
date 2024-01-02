@@ -1,21 +1,16 @@
 def find_mirror(puzzle, ignore=-1):
     N = len(puzzle)
-    n_matching_rows_max = 0
     ans = 0
-    for x in range(N):
+    for x in range(0, N - 1):
         if x == ignore - 1:
             continue
         i, j = x, x + 1
-        n_matching_rows = 0
         while i >= 0 and j < N:
             if puzzle[i] != puzzle[j]:
-                n_matching_rows = 0
                 break
             i, j = i - 1, j + 1
-            n_matching_rows += 1
-        if n_matching_rows > n_matching_rows_max:
-            ans = x + 1
-            n_matching_rows_max = n_matching_rows
+        if i < 0 or j >= N:
+            return x + 1
 
     return ans
 
