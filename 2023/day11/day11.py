@@ -1,5 +1,4 @@
-from itertools import combinations
-from itertools import accumulate
+from itertools import combinations, accumulate
 
 
 def day11():
