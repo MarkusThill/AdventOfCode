@@ -1,8 +1,8 @@
-def eval_expression(if_else, x, m, a, s):
-    for iff, ret in if_else[:-1]:
+def eval_expression(if_elif, x, m, a, s):
+    for iff, ret in if_elif[:-1]:
         if eval(iff):
             return ret
-    return if_else[-1][0]
+    return if_elif[-1][0]
 
 
 def day19():
