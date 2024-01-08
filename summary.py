@@ -70,7 +70,7 @@ def plot_subplots(file_data_lines, file_data_characters):
 
 
 def main():
-    root_directory = "./2023/"  # Change this to your desired root directory
+    root_directory = "./2022/"  # Change this to your desired root directory
 
     file_data_lines = {}
     file_data_characters = {}
