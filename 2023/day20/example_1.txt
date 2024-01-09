@@ -1,0 +1,5 @@
+%a -> b
+%b -> c
+broadcaster -> a, b, c
+%c -> inv
+&inv -> a
