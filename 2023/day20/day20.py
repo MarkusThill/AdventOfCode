@@ -3,6 +3,7 @@ import math
 
 
 def day20():
+    N_BUTTON_PRESSES = 1000
     file1 = open("2023/day20/input.txt", "r")
     lines = [l.strip() for l in file1.readlines()]
 
@@ -38,7 +39,7 @@ def day20():
                 if inp_val:
                     continue
                 m["out"] = not m["out"]
-            elif m["op"] == "&":  # Essentially, a Boolean NAND Gate
+            elif m["op"] == "&":  # Essentially, a Boolean NAND Gate:
                 m["out"] = not all(modules[n]["out"] for n in m["in"])
 
             for n in m["next"]:
@@ -50,7 +51,7 @@ def day20():
                 if modules[mm]["out"] and n_button not in cycles[mm]:
                     cycles[mm].append(n_button)
 
-        if n_button == 1000 - 1:
+        if n_button == N_BUTTON_PRESSES - 1:
             print(f"Solution Day 20.1: {counter[False] * counter[True]}")
 
         if all(len(v) >= 2 for v in cycles.values()):
