@@ -24,35 +24,29 @@ def day21():
 
     q = deque()
     q.appendleft(state)
-    visited, final_set = set(), dict()
+    visited, final_set = set(), [0] * (budget + 1)
     while q:
         x, y, b = state = q.pop()
         if state in visited:
             continue
         visited.add(state)
-        if b not in final_set:
-            final_set[b] = 0
+        # if b not in final_set:
+        #    final_set[b] = 0
         final_set[b] += 1
         if b == 0:
             continue
 
-        # Compute after states
+        # Compute after states, also works for part 1, since we never reach the edge
         for i, j in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
             nx, ny, nb = new_state = (x + i, y + j, b - 1)
-            # if nx >= 0 and nx < X and ny >= 0 and ny < Y and nb >= 0:
             if G[nx % X][ny % Y] == "." and new_state not in visited:
                 q.appendleft(new_state)
 
-    # sols = []
-    # for b in range(len(final_set)):
-    #    # print(b, final_set[b])
-    #    sols.append(final_set[b])
-    # sols = list(reversed(sols))
     sols = list(reversed([final_set[b] for b in range(len(final_set))]))
 
-    # print("Solution X:", sols[64])
     print(f"Solution Day 21.1: {sols[n_steps_part_1]}")
 
+    # Part 2:
     xx = [x - y for x, y in zip(_diff(sols)[X:], _diff(sols)[:-X])]
     delta = xx[-X:]
     diff = [x - y for x, y in zip(sols[X:], sols[:-X])]
