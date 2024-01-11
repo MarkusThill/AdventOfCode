@@ -17,7 +17,6 @@ def day21():
     assert len(start) == 1
 
     x_start, y_start = start[0]
-    part_1(G, X, Y, x_start, y_start)
 
     G[x_start][y_start] = "."
     budget = X * 2  # 3->10 for the example_1.txt input
@@ -63,32 +62,6 @@ def day21():
     n_delta = n_diff * (n_diff - 1) // 2  # 1 + 2 + 3 + ... + (n_diff - 1)
     solution_2 = sols[X * 0 + b] + n_diff * diff[X * 0 + b] + n_delta * sum(delta)
     print(f"Solution Day 21.2: {solution_2}")
-
-
-def part_1(G, X, Y, x_start, y_start):
-    G[x_start][y_start] = "."
-    budget = 64
-    state = (x_start, y_start, budget)
-
-    q = deque()
-    q.appendleft(state)
-    visited, final_set = set(), set()
-    while q:
-        x, y, b = state = q.pop()
-        if state in visited:
-            continue
-        if b == 0:
-            final_set.add((x, y))
-            continue
-        visited.add(state)
-        # Compute after states
-        for i, j in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
-            nx, ny, nb = new_state = (x + i, y + j, b - 1)
-            if nx >= 0 and nx < X and ny >= 0 and ny < Y and nb >= 0:
-                if G[nx][ny] == "." and new_state not in visited:
-                    q.appendleft(new_state)
-
-    print(f"Solution Day 21.1: {len(final_set)}")
 
 
 if __name__ == "__main__":
