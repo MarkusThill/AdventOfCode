@@ -48,11 +48,51 @@ def day21():
     # Part 2:
     # An interesting oberservation is that after some time (certain number of steps)
     # we can observe a dependency between s[n] & s[n + W].
-    # s[n + W] = s[n] + Δs_W[n]
-    # TBC ...
+    # Δs_W[n] = s[n + W] - s[n] (ABCD)
+    # ds[n] = s[n + 1] - s[n] # TODO: ds -> D
+    #
+    # Δds_W[n] = ds[n + W] - ds[n] = ds[n + kW] - ds[n + (k-1)W] = const.
+    #
+    # ds[n + kW] = ds[n + (k-1)W] + Δds_W[n]
+    #            = ds[n + (k-2)W] + Δds_W[n] + Δds_W[n] = ds[n + (k-2)W] + 2*Δds_W[n]
+    #            = ds[n + (k-3)W] + Δds_W[n] + Δds_W[n] + Δds_W[n] = ds[n + (k-3)W] + 3*Δds_W[n]
+    #            = ...
+    #            = ds[n + (0)W] + Δds_W[n] + ... + Δds_W[n]
+    #            = ds[n] + kΔds_W[n]
+    # ds[n] = ds[n - W] + Δds_W[n] # TODO: needed anywhere?
+    #
+
+    #
+    # s[n + 1] = s[n] + ds[n]
+    # s[n + 2] = s[n + 1] + ds[n + 1] = s[n] + ds[n] + ds[n + 1]
+    # s[n + 3] = s[n + 2] + ds[n + 2] = s[n + 1] + ds[n + 1] + ds[n + 2] = s[n] + ds[n] + ds[n + 1] + ds[n + 2]
+    # ...
+    # s[n + W] = s[n] + ds[n] + ds[n + 1] + ds[n + 2] + ... + ds[n + W - 1]
+    #          = s[n] + Σ_{w=0..W-1}{ ds[n + w] }
+    #          = s[n] + Δs_W[n] (see above) # TODO: Coeffizientenvergleich mit erster Formel
+    #
+    # using rearanged eq. (ABCD):
+    #         s[n + W] = s[n] + Δs_W[n] (QWERTZ)
+    #
+    # s[n + 2W] = s[n] + Σ_{w=0..2W-1}{ ds[n + w] }
+    #           = s[n] + Σ_{w=0..W-1}{ ds[n + w] } + Σ_{w=0..W-1}{ ds[n + w + W] }
+    #           = s[n] + R(n, 0) + R(n, 1) # TODO
+    #           = s[n] + Σ_{w=0..W-1}{ ds[n + w] } + Σ_{w=0..W-1}{ ds[n + w] + Δds_W[n + w] }
+    #           = s[n] + Σ_{w=0..W-1}{ ds[n + w] } + Σ_{w=0..W-1}{ ds[n + w] } + Σ_{w=0..W-1}{ Δds_W[n + w] }
+    #           = s[n] +         Δs_W[n]           +         Δs_W[n]           + Σ_{w=0..W-1}{ Δds_W[n + w] }
+    #
+    # with:
+    # R(n, k) = Σ_{w=0..W-1}{ ds[n + w + kW] }
+    #         = Σ_{w=0..W-1}{ ds[n + w] + kΔds_W[n + w] }
+    #         = Σ_{w=0..W-1}{ ds[n + w] } + Σ_{w=0..W-1}{ kΔds_W[n + w] }
+    #         = Δs_W[n] + k*Σ_{w=0..W-1}{ Δds_W[n + w] }
+    #
+    # s[n + kW] = s[n] + Σ_{w=0..kW-1}{ ds[n + w] }
+    #           = s[n] + Σ_{w=0..W-1}{ ds[n + w] } + Σ_{w=0..W-1}{ ds[n + w + W] } + Σ_{w=0..W-1}{ ds[n + w + 2W] } + ... + Σ_{w=0..W-1}{ ds[n + w + (k-1)W] }
+    #           = s[n] +
 
     Δs_W = [x - y for x, y in zip(s[W:], s[:-W])]
-    delta_ds = [x - y for x, y in zip(diff(s)[W:], diff(s)[:-W])][-W:]
+    Δds_W = [x - y for x, y in zip(diff(s)[W:], diff(s)[:-W])][-W:]
 
     cycle_idx, cycle_offset = n_grid_cycles - 2, n_steps_part_2 % W
     s_start_idx = W * cycle_idx + cycle_offset
@@ -61,10 +101,24 @@ def day21():
     solution_2 = (
         s[s_start_idx]  # start with this pre-computed solution
         + n_diff * Δs_W[s_start_idx]  # add the difference
-        + n_delta * sum(delta_ds)
+        + n_delta * sum(Δds_W)
     )
     print(f"Solution Day 21.2: {solution_2}")
 
 
 if __name__ == "__main__":
     day21()
+
+    # s[n + W] = s[n] + Δs_W[n]
+    # s[n + 2W] = s[n+W] + Δs_W[n + W]
+    #           = s[n] + Δs_W[n] + Δs_W[n + W]
+    #
+    # ds[n - 1] = s[n] - s[n - 1]
+    # s[n] = s[n - 1] + ds[n - 1]
+    # s[n - 1] = s[n - 2] + ds[n - 2]
+    # s[n - k] = s[n - k - 1] + ds[n - k -1]
+    # s[n] = s[n - 1] + ds[n - 1] =  s[n - 2] + ds[n - 2] + ds[n - 1] = s[n - W] + ds[n - W] + ... + ds[n - 2] + ds[n - 1]
+    #      = s[n - W] + Σ_w{ds[n - w]}
+    # ds[n + W] = ds[n] + Δds_W[n % W]
+    # s[n + 1] = s[n] + ds[n]
+    #
