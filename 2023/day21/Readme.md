@@ -1,6 +1,6 @@
 <img src="https://raw.githubusercontent.com/MarkusThill/AdventOfCode/main/2023/day21/illustration.png" width="500" height="500">
 
-# --- Day 16: Proboscidea Volcanium ---
+# --- Day 21: Step Counter ---
 
 You can find the original problem statement here: [https://adventofcode.com/2023/day/21](https://adventofcode.com/2023/day/21)
 
@@ -10,7 +10,36 @@ In the first part, the Elf needs to calculate the number of reachable garden plo
 
 In the second part, the Elf realizes its mistake and states that the map repeats infinitely in every direction. The task is then to determine the number of reachable garden plots starting from the center on an infinite map with a specified number of steps (26501365).
 
-# Some Notes for Part 2:
+## Solution Sketch
+
+**Part 1 - Reaching 64 Steps:**
+- Utilizes Breadth-First Search (BFS) to efficiently explore reachable garden plots within 64 steps.
+- Maintains counts of visited states, efficiently handling periodicity within the grid layout.
+- Achieves the solution by updating counts during BFS exploration.
+
+**Part 2 - Infinitely Repeating Layout:**
+- Recognizes periodicity in the layout, enabling the use of a recurrence relation.
+- Formulates a mathematical solution by considering differences and sums of sequences.
+- Efficiently calculates the number of reachable plots for an astronomical step count using the recurrence relation.
+
+**Key Insights:**
+1. **Periodicity and Recurrence Relation:**
+   - Leverages the periodic nature of the grid layout to optimize computations.
+   - Introduces a recurrence relation, expressing the sequence of reachable plots at various step counts.
+
+2. **Efficient Data Structures:**
+   - Deploys a deque for BFS to efficiently explore potential paths in the grid.
+   - Uses sets and lists to manage visited states and counts of reachable plots, facilitating quick computations.
+
+3. **Mathematical Abstraction:**
+   - Incorporates mathematical concepts such as differences and sums of sequences.
+   - Generalizes the problem, enabling an elegant and efficient solution for larger step counts.
+
+**Conclusion:**
+Advent of Code 2023, Day 21's "Step Counter" riddle showcases effective problem-solving through algorithmic strategies, clever use of mathematical insights, and efficient handling of grid layouts. The solutions provide a systematic and elegant approach to navigating the farm and determining the number of reachable garden plots at different step counts, demonstrating the power of mathematical abstraction and algorithmic thinking.
+
+
+## Some more Notes for Part 2:
 
 ```
 # For the given example, the first few elements of the solutions s[n] look like
