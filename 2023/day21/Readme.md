@@ -1,5 +1,17 @@
+<img src="https://github.com/MarkusThill/AdventOfCode/blob/2f7731a691da9fcb293381f57ba7ece8cbdd524b/2022/day16/volcano-elephants.png" width="500" height="500">
+
+# --- Day 16: Proboscidea Volcanium ---
+
+You can find the original problem statement here: [https://adventofcode.com/2023/day/21](https://adventofcode.com/2023/day/21)
+
+In this riddle, the task is to help an Elf plan its steps on a farm consisting of garden plots and rocks. The Elf starts at a specific plot marked 'S' and can move one step north, south, east, or west, but only onto tiles that are garden plots. The Elf needs to determine which garden plots it can reach exactly with a given number of steps. The puzzle provides a map with the starting position 'S,' garden plots marked '.', and rocks marked '#.' The Elf's goal is to find the number of garden plots it can reach in a specific number of steps.
+
+In the first part, the Elf needs to calculate the number of reachable garden plots in exactly 64 steps. The given example map is used to illustrate the process, but the actual puzzle input is a larger map.
+
+In the second part, the Elf realizes its mistake and states that the map repeats infinitely in every direction. The task is then to determine the number of reachable garden plots starting from the center on an infinite map with a specified number of steps (26501365).
+
 # Some Notes for Part 2:
-    
+
 ```
 # For the given example, the first few elements of the solutions s[n] look like
 # this, where n is the budget of allowed steps.
