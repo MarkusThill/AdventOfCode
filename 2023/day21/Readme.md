@@ -35,9 +35,6 @@ In the second part, the Elf realizes its mistake and states that the map repeats
    - Incorporates mathematical concepts such as differences and sums of sequences.
    - Generalizes the problem, enabling an elegant and efficient solution for larger step counts.
 
-**Conclusion:**
-Advent of Code 2023, Day 21's "Step Counter" riddle showcases effective problem-solving through algorithmic strategies, clever use of mathematical insights, and efficient handling of grid layouts. The solutions provide a systematic and elegant approach to navigating the farm and determining the number of reachable garden plots at different step counts, demonstrating the power of mathematical abstraction and algorithmic thinking.
-
 
 ## Some more Notes for Part 2:
 
