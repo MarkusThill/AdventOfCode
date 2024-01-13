@@ -1,4 +1,4 @@
-<img src="https://github.com/MarkusThill/AdventOfCode/blob/2f7731a691da9fcb293381f57ba7ece8cbdd524b/2022/day16/volcano-elephants.png" width="500" height="500">
+<img src="https://raw.githubusercontent.com/MarkusThill/AdventOfCode/main/2023/day21/illustration.png" width="500" height="500">
 
 # --- Day 16: Proboscidea Volcanium ---
 
