@@ -5,3 +5,13 @@ Solutions for the Advent of Code Problems.
 
 The original problem descriptions can all be found here:
 [https://adventofcode.com](https://adventofcode.com)
+
+
+    *Puzzles unfold code,*
+
+    *Advent whispers challenge sweet,*
+
+    *Logic dances free.*
+
+-- Japanese Haiku
+   Unknown, anno Domini 1547 
