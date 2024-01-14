@@ -17,7 +17,8 @@ def collides(brick1, brick2):
 
 
 def find_supporters(brick, brick_set):
-    brick = brick[0], brick[1], (brick[2][0] - 1, brick[2][1] - 1)
+    x, y, z = brick
+    brick = (x, y, (z[0] - 1, z[1] - 1))
     return {b for b in brick_set if collides(brick, b)}
 
 
@@ -49,11 +50,7 @@ def day22():
         height_map[r_x, r_y] = new_z + z_height + 1
         b = x, y, (new_z, new_z + z_height)
 
-        # s = collides_any(b, settled)
-        # assert len(s) == 0
-
-        # Find supporting bricks underneath
-        s = find_supporters(b, settled)
+        s = find_supporters(b, settled)  # Find supporting bricks underneath
         if len(s) == 1:
             support_bricks.add(list(s)[0])
 
