@@ -7,11 +7,11 @@ The original problem descriptions can all be found here:
 [https://adventofcode.com](https://adventofcode.com)
 
 
-    *Puzzles unfold code,*
+*Puzzles unfold code,*
 
-    *Advent whispers challenge sweet,*
+*Advent whispers challenge sweet,*
 
-    *Logic dances free.*
+*Logic dances free.*
 
 -- Japanese Haiku
    Unknown, anno Domini 1547 
