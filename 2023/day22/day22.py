@@ -24,11 +24,9 @@ def find_supporters(brick, brick_set):
 def day22():
     file1 = open("2023/day22/input.txt", "r")
     lines = [l.strip() for l in file1.readlines()]
-
-    bricks = [l.split("~") for l in lines]
     bricks = [
         tuple([(int(x), int(y)) for x, y in zip(r[0].split(","), r[1].split(","))])
-        for r in bricks
+        for r in [l.split("~") for l in lines]
     ]
 
     max_x, max_y = max(b[0][-1] for b in bricks), max(b[1][-1] for b in bricks)
