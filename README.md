@@ -8,9 +8,7 @@ The original problem descriptions can all be found here:
 
 
 *Puzzles unfold code,*
-
 *Advent whispers challenge sweet,*
-
 *Logic dances free.*
 
 -- Japanese Haiku
