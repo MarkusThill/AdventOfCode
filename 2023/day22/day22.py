@@ -2,6 +2,7 @@ from collections import deque
 from functools import cmp_to_key
 import numpy as np
 import time
+from heapq import heappush, heappop
 
 
 def compare_z(item_1, item_2):
@@ -34,7 +35,8 @@ def day22():
 
     max_x, max_y = max(b[0][-1] for b in bricks), max(b[1][-1] for b in bricks)
     height_map = np.ones((max_x + 1, max_y + 1), dtype="int")
-    settled, support_bricks, brick_idx = set(), set(), 0
+    settled, support_bricks, brick_idx, solution_2 = set(), set(), 0, 0
+    supports, supported_by = dict(), dict()
 
     bricks = sorted(bricks, key=cmp_to_key(compare_z))
     while brick_idx < len(bricks):
@@ -46,16 +48,31 @@ def day22():
         height_map[r_x, r_y] = new_z + z_height + 1
         b = x, y, (new_z, new_z + z_height)
 
-        s = find_supporters(b, settled)  # Find supporting bricks underneath
-        if len(s) == 1:
-            support_bricks.add(list(s)[0])
-
-        # bricks[brick_idx] = b # not really needed, although b changed
+        supps = find_supporters(b, settled)  # Find supporting bricks underneath
         settled.add(b)
         brick_idx += 1
 
+        for s in supps:  # For part 2: s supports b
+            if s not in supports:
+                supports[s] = set()
+            supports[s].add(b)
+        supported_by[b] = supps  # For part 2: b supported-by s
+
+    # Part 2:
+    for b in settled:
+        q, falling = deque(), {b}
+        q.extend(supports[b] if b in supports else [])
+        while q:
+            b = q.pop()
+            # s_by = supported_by[b]
+            if supported_by[b].issubset(falling):
+                falling.add(b)
+                q.extend(supports[b] if b in supports else [])
+        solution_2 += len(falling) - 1
+
+    support_bricks = set([list(s)[0] for s in supported_by.values() if len(s) == 1])
     print(f"Solution Day 22.1: {len(bricks) - len(support_bricks)}")
-    print(f"Solution Day 22.2: {123}")
+    print(f"Solution Day 22.2: {solution_2}")
 
 
 if __name__ == "__main__":
