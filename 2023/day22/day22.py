@@ -1,8 +1,6 @@
 from collections import deque
 from functools import cmp_to_key
 import numpy as np
-import time
-from heapq import heappush, heappop
 
 
 def compare_z(item_1, item_2):
@@ -64,7 +62,6 @@ def day22():
         q.extend(supports[b] if b in supports else [])
         while q:
             b = q.pop()
-            # s_by = supported_by[b]
             if supported_by[b].issubset(falling):
                 falling.add(b)
                 q.extend(supports[b] if b in supports else [])
@@ -76,6 +73,4 @@ def day22():
 
 
 if __name__ == "__main__":
-    start = time.time()
     day22()
-    print(f"Time: {round(time.time() - start, 2)} seconds!")
