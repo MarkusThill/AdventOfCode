@@ -34,15 +34,11 @@ def day22():
 
     max_x, max_y = max(b[0][-1] for b in bricks), max(b[1][-1] for b in bricks)
     height_map = np.ones((max_x + 1, max_y + 1), dtype="int")
-    settled, support_bricks = set(), set()
+    settled, support_bricks, brick_idx = set(), set(), 0
 
-    while len(settled) != len(bricks):
-        # TODO: Sort Can be moved outside loop:
-        bricks = sorted(bricks, key=cmp_to_key(compare_z))
-        for i, b in enumerate(bricks):
-            if b not in settled:
-                break
-        x, y, z = b
+    bricks = sorted(bricks, key=cmp_to_key(compare_z))
+    while brick_idx < len(bricks):
+        x, y, z = b = bricks[brick_idx]
         z_height = z[1] - z[0]
 
         r_x, r_y = range(x[0], x[1] + 1), range(y[0], y[1] + 1)
@@ -54,8 +50,9 @@ def day22():
         if len(s) == 1:
             support_bricks.add(list(s)[0])
 
-        bricks[i] = b
+        # bricks[brick_idx] = b # not really needed, although b changed
         settled.add(b)
+        brick_idx += 1
 
     print(f"Solution Day 22.1: {len(bricks) - len(support_bricks)}")
     print(f"Solution Day 22.2: {123}")
