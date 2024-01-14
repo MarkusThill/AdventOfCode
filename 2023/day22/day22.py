@@ -9,7 +9,7 @@ def compare_z(item_1, item_2):
 
 
 def collides(brick1, brick2):
-    axes = [
+    axes = [  # checks for a collision between two bricks
         [(c2[0] <= c1[0] <= c2[1]) or (c2[0] <= c1[1] <= c2[1]) for c1, c2 in G]
         for G in [zip(brick1, brick2), zip(brick2, brick1)]
     ]
@@ -17,12 +17,8 @@ def collides(brick1, brick2):
 
 
 def find_supporters(brick, brick_set):
-    supporters = set()
-    for b in brick_set:
-        assert collides(brick, b) == collides(b, brick), f"\n{brick}\n{b}"
-        if collides(brick, b):
-            supporters.add(b)
-    return supporters
+    brick = brick[0], brick[1], (brick[2][0] - 1, brick[2][1] - 1)
+    return {b for b in brick_set if collides(brick, b)}
 
 
 def day22():
@@ -57,8 +53,7 @@ def day22():
         # assert len(s) == 0
 
         # Find supporting bricks underneath
-        bb = x, y, (new_z - 1, new_z + z_height - 1)
-        s = find_supporters(bb, settled)
+        s = find_supporters(b, settled)
         if len(s) == 1:
             support_bricks.add(list(s)[0])
 
