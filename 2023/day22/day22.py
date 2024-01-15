@@ -56,14 +56,13 @@ def day22():
 
     # Part 2:
     for b in settled:
-        q, falling = deque(), {b}
-        q.extend(supports[b] if b in supports else [])
+        q, falling = deque(supports[b] if b in supports else []), {b}
         while q:
             b = q.pop()
             if supported_by[b].issubset(falling):
                 falling.add(b)
                 q.extend(supports[b] if b in supports else [])
-        solution_2 += len(falling) - 1
+        solution_2 += len(falling) - 1  # do not count the brick that we removed
 
     support_bricks = set([list(s)[0] for s in supported_by.values() if len(s) == 1])
     print(f"Solution Day 22.1: {len(bricks) - len(support_bricks)}")
