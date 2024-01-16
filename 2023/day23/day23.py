@@ -57,5 +57,5 @@ def day23(part_2=False):
 
 
 if __name__ == "__main__":
-    print(f"Solution Day 22.1: {day23(part_2=False)}")
-    print(f"Solution Day 22.2: {day23(part_2=True)}")
+    print(f"Solution Day 23.1: {day23(part_2=False)}")
+    print(f"Solution Day 23.2: {day23(part_2=True)}")
