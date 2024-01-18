@@ -1,4 +1,3 @@
-from collections import deque
 from z3 import Real, Solver
 
 
