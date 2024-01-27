@@ -1,11 +1,4 @@
 import numpy as np
-import re
-import ast
-import math
-import functools
-import portion as P
-import networkx as nx
-import time
 from itertools import cycle
 
 
@@ -51,7 +44,7 @@ def day17_1():
     H = 6000
     N = 2022
     # Using readlines()
-    file1 = open('test.txt', 'r')
+    file1 = open("test.txt", "r")
     lines = file1.readlines()
     lines = [l.strip() for l in lines]
     assert len(lines) == 1
@@ -107,15 +100,16 @@ def day17_1():
 
     print("Solution day 17.1", get_tower_top(X) - 1)
 
+
 def signature(X):
-    return tuple(X[get_tower_top(X) - 50:get_tower_top(X)].flatten().tolist())
+    return tuple(X[get_tower_top(X) - 50 : get_tower_top(X)].flatten().tolist())
 
 
 def day17_2():
     H = 6000
     N = 2000
     # Using readlines()
-    file1 = open('input17_1.txt', 'r')
+    file1 = open("input17_1.txt", "r")
     lines = file1.readlines()
     lines = [l.strip() for l in lines]
     assert len(lines) == 1
@@ -185,16 +179,20 @@ def day17_2():
                 print("Previous signature at:", index_tracker[sig])
                 cycle_len = i - index_tracker[sig]["idx"]
                 print("cycle:", cycle_len)
-                cycle_height = get_tower_top(X) - index_tracker[sig]["height"]  # off by one here...
+                cycle_height = (
+                    get_tower_top(X) - index_tracker[sig]["height"]
+                )  # off by one here...
                 print("cycle-height:", cycle_height)
             index_tracker[sig] = {"idx": i, "height": get_tower_top(X) - 1}
 
         height_tracker[i + 1] = get_tower_top(X)  # off by one here..
 
-    print("Solution day 17.2:",
-          (1_000_000_000_000 // cycle_len) * cycle_height + height_tracker[1_000_000_000_000 % cycle_len])
+    print(
+        "Solution day 17.2:",
+        (1_000_000_000_000 // cycle_len) * cycle_height
+        + height_tracker[1_000_000_000_000 % cycle_len],
+    )
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     day17_1()
