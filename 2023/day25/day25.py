@@ -4,9 +4,9 @@
 import networkx as nx
 from functools import reduce
 
-with open('input.txt') as f:
+with open("2023/day25/input.txt") as f:
     lines = f.readlines()
-    
+
 lines = [l.strip().split(":") for l in lines]
 G = nx.from_edgelist([(l[0], n) for l in lines for n in l[1].strip().split(" ")])
 
