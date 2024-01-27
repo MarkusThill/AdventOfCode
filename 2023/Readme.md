@@ -7,7 +7,7 @@ The original problem descriptions for 2023 can all be found here:
 
 # Stats
 ## Lines of Code (LOC) for the Individual Solutions
-<img src="https://github.com/MarkusThill/AdventOfCode/blob/main/2023/png/loc.png" width="900">
+<img src="https://github.com/MarkusThill/AdventOfCode/blob/main/2023/png/loc.png" width="1000">
 
 ## Approximate Execution Times for the Individual Solutions
-<img src="https://github.com/MarkusThill/AdventOfCode/blob/main/2023/png/exc.png" width="900">
+<img src="https://github.com/MarkusThill/AdventOfCode/blob/main/2023/png/exc.png" width="1000">
