@@ -1,8 +1,3 @@
-import numpy as np
-import re
-import ast
-import math
-import functools
 import portion as P
 
 
@@ -15,7 +10,7 @@ def distance_from_row(p, row):
 
 
 def day15_1():
-    file1 = open('input15_1.txt', 'r')
+    file1 = open("2022/day15/input15_1.txt", "r")
     lines = file1.readlines()
     lines = [l.strip() for l in lines]
     lines = [l.split(":") for l in lines]
@@ -30,14 +25,14 @@ def day15_1():
 
     row_intervals = P.empty()
     for l in lines:
-        print(l)
+        # print(l)
         S, B = l[0], l[1]
         m = manhatten(p1=S, p2=B)
-        print("m", m)
+        # print("m", m)
         dist_row = distance_from_row(S, row)
-        print("dist_row", dist_row)
+        # print("dist_row", dist_row)
         freedom_in_row = m - dist_row
-        print("freedom_in_row", freedom_in_row)
+        # print("freedom_in_row", freedom_in_row)
         if freedom_in_row < 0:  # how many '#' can we put in this row?
             continue
         i = P.closed(S[0] - freedom_in_row, S[0] + freedom_in_row)
@@ -45,7 +40,7 @@ def day15_1():
 
         # check, if S or B are in this row
         if S[1] == row:
-            i = P.closed(S[0],S[0])
+            i = P.closed(S[0], S[0])
             row_intervals -= i
         if B[1] == row:
             i = P.closed(B[0], B[0])
@@ -57,15 +52,15 @@ def day15_1():
         if i.left == P.CLOSED and i.right == P.CLOSED:
             length += 1
         elif i.left == P.OPEN and i.right == P.OPEN:
-            length -=1
+            length -= 1
         total_length += length
-
 
     print("Solution day 15.1:", total_length)
 
+
 # Needs some optimizations using map() etc.
 def day15_2():
-    file1 = open('input15_1.txt', 'r')
+    file1 = open("2022/day15/input15_1.txt", "r")
     lines = file1.readlines()
     lines = [l.strip() for l in lines]
     lines = [l.split(":") for l in lines]
@@ -79,7 +74,7 @@ def day15_2():
     N = 4000000
     range_interval = P.closed(0, N)
 
-    for row in reversed(range(N)): # Solution for row 2703981
+    for row in reversed(range(N)):  # Solution for row 2703981
         if row % 1000 == 0:
             print(row)
 
@@ -107,13 +102,15 @@ def day15_2():
             elif i.left == P.OPEN and i.right == P.OPEN:
                 length -= 1
             if length > 0:
-                print(row, i)
-                print()
-                print("Solution day 15.2:", (i.lower+1)*N + row)
-                print()
+                #                print(row, i)
+                #                print()
+                #                print("Solution day 15.2:", (i.lower + 1) * N + row)
+                #                print()
                 return
 
     print("No Solution was found! Seems like the program is wrong!")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
+    day15_1()
     day15_2()

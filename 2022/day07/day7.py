@@ -1,5 +1,6 @@
 from collections import deque
 
+
 class Node:
     def __init__(self, name=None, size=0):
         self.name = name
@@ -21,14 +22,13 @@ class Node:
         for c in self.children:
             size = c.update_sizes()
             self.size += size
-        print(self.name, self.size)
         return self.size
 
-def day7_1():
+
+def day7():
     N = 100000
     N_free = 30000000
-    # Using readlines()
-    file1 = open('input7_1.txt', 'r')
+    file1 = open("2022/day07/input7_1.txt", "r")
     lines = file1.readlines()
     lines = [l.strip() for l in lines]
 
@@ -54,9 +54,8 @@ def day7_1():
             spl = l.split(" ")
             assert len(spl) == 2
             first, second = spl[0], spl[1]
-            n = Node(second, 0 if first=="dir" else int(first))
+            n = Node(second, 0 if first == "dir" else int(first))
             cur_node.add_child(n)
-            # print(n.name, n.parent)
 
     # Compute sizes
     n = root_node
@@ -70,15 +69,13 @@ def day7_1():
 
     while stack:
         s = stack.pop()
-        if len(s.children) > 0: # non-empty directory
+        if len(s.children) > 0:  # non-empty directory
             for c in s.children:
                 stack.append(c)
             if s.size <= N:
-                #print("size: ", s.size)
                 solution += s.size
 
     print("Solution day 7.1:", solution)
-
 
     n_required = N_free - (70000000 - n.size)
     assert n_required > 0
@@ -88,7 +85,7 @@ def day7_1():
     solution = None
     while stack:
         s = stack.pop()
-        if len(s.children) > 0: # non-empty directory
+        if len(s.children) > 0:  # non-empty directory
             for c in s.children:
                 stack.append(c)
             if s.size >= n_required:
@@ -98,5 +95,5 @@ def day7_1():
     print("Solution day 7.2:", solution.size)
 
 
-if __name__ == '__main__':
-    day7_1()
+if __name__ == "__main__":
+    day7()

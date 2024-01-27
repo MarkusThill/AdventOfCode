@@ -7,8 +7,8 @@ def update_tail(h, t):
     return t  # Tail stays the same
 
 
-def day9_1():
-    file1 = open('input9_1.txt', 'r')
+def day9():
+    file1 = open("2022/day09/input9_1.txt", "r")
     lines = file1.readlines()
     lines = [l.strip() for l in lines]
     lines = [l.split(" ") for l in lines]
@@ -16,15 +16,13 @@ def day9_1():
 
     grid_size = 1000
     grid = np.zeros((grid_size, grid_size)) == 1
-    print(grid.sum())
 
     H = np.array([grid_size // 2, grid_size // 2])
     tail_list = [np.array(H) for _ in range(9)]
 
     for inst in lines:
-        print(inst)
         d = inst[0]
-        if d == 'R':
+        if d == "R":
             dir_vec = [0, 1]
         elif d == "L":
             dir_vec = [0, -1]
@@ -35,7 +33,7 @@ def day9_1():
         else:
             raise "Error"
         dir_vec = np.array(dir_vec)
-        for i in range(inst[1]):
+        for _ in range(inst[1]):
             H += dir_vec
             new_H = H
             for j in range(len(tail_list)):
@@ -48,8 +46,6 @@ def day9_1():
 
                 if not cmp:
                     tail_list[j] = np.array(T)
-                    #print("updated: ", j, T)
-                    # print(np.stack(tail_list))
                 if j == len(tail_list) - 1:
                     grid[T[0], T[1]] |= True
                 new_H = np.array(T)
@@ -57,5 +53,5 @@ def day9_1():
     print("Solution day 9.1/2:", grid.sum())
 
 
-if __name__ == '__main__':
-    day9_1()
+if __name__ == "__main__":
+    day9()

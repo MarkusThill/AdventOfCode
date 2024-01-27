@@ -2,13 +2,13 @@ import numpy as np
 
 
 def day5_1():
-    file1 = open('input5_1.txt', 'r')
+    file1 = open("2022/day05/input5_1.txt", "r")
     lines = file1.readlines()
     n = 4
     chunks = []
     for l in lines:
         if l.find("[") >= 0:
-            chunks.append([l[i:i + n] for i in range(0, len(l), n)])
+            chunks.append([l[i : i + n] for i in range(0, len(l), n)])
 
     stack = [[s.strip().replace("[", "").replace("]", "") for s in c] for c in chunks]
 
@@ -20,10 +20,10 @@ def day5_1():
     for s in stack:
         s += [""] * (num_stacks - len(s))
 
-    instructions = lines[len(stack)+2:]
+    instructions = lines[len(stack) + 2 :]
     instructions = [i.strip() for i in instructions]
     instructions = [i.split(" ") for i in instructions]
-    instructions = [ (int(i[1]), int(i[3])-1, int(i[5])-1) for i in instructions]
+    instructions = [(int(i[1]), int(i[3]) - 1, int(i[5]) - 1) for i in instructions]
 
     # now create stack columns vectors
     stack = np.array(stack)
@@ -31,8 +31,8 @@ def day5_1():
     for i in range(stack.shape[1]):
         s = stack[:, i].tolist()[::-1]
         idx = len(s)
-        if '' in s:
-            idx = s.index('')
+        if "" in s:
+            idx = s.index("")
         stack_vecs.append(s[:idx])
 
     # Now iterate through instructions
@@ -41,11 +41,6 @@ def day5_1():
         stack_vecs[dest] = list(stack_vecs[dest][:-count])
         assert len(ll) == count
         stack_vecs[target] += ll[::-1]
-        #print(stack_vecs)
-        #print()
-
-    print(stack_vecs)
-    print()
 
     solution = ""
     for s in stack_vecs:
@@ -55,13 +50,13 @@ def day5_1():
 
 def day5_2():
     # Using readlines()
-    file1 = open('input5_1.txt', 'r')
+    file1 = open("2022/day05/input5_1.txt", "r")
     lines = file1.readlines()
     n = 4
     chunks = []
     for l in lines:
         if l.find("[") >= 0:
-            chunks.append([l[i:i + n] for i in range(0, len(l), n)])
+            chunks.append([l[i : i + n] for i in range(0, len(l), n)])
 
     stack = [[s.strip().replace("[", "").replace("]", "") for s in c] for c in chunks]
 
@@ -73,10 +68,10 @@ def day5_2():
     for s in stack:
         s += [""] * (num_stacks - len(s))
 
-    instructions = lines[len(stack)+2:]
+    instructions = lines[len(stack) + 2 :]
     instructions = [i.strip() for i in instructions]
     instructions = [i.split(" ") for i in instructions]
-    instructions = [ (int(i[1]), int(i[3])-1, int(i[5])-1) for i in instructions]
+    instructions = [(int(i[1]), int(i[3]) - 1, int(i[5]) - 1) for i in instructions]
 
     # now create stack columns vectors
     stack = np.array(stack)
@@ -84,8 +79,8 @@ def day5_2():
     for i in range(stack.shape[1]):
         s = stack[:, i].tolist()[::-1]
         idx = len(s)
-        if '' in s:
-            idx = s.index('')
+        if "" in s:
+            idx = s.index("")
         stack_vecs.append(s[:idx])
 
     # Now iterate through instructions
@@ -94,16 +89,13 @@ def day5_2():
         stack_vecs[dest] = list(stack_vecs[dest][:-count])
         assert len(ll) == count
         stack_vecs[target] += ll
-        #print(stack_vecs)
-        #print()
-
-    print(stack_vecs)
-    print()
 
     solution = ""
     for s in stack_vecs:
         solution += s[-1]
     print("Solution day 5.2:", solution)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
+    day5_1()
     day5_2()

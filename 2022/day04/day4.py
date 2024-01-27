@@ -1,10 +1,10 @@
 def day4_1():
     # Using readlines()
-    file1 = open('input4_1.txt', 'r')
+    file1 = open("2022/day04/input4_1.txt", "r")
     lines = file1.readlines()
     lines = [l.strip() for l in lines]
 
-    sections = [ [ [int(w) for w in q.split('-')] for q in l.split(',')] for l in lines]
+    sections = [[[int(w) for w in q.split("-")] for q in l.split(",")] for l in lines]
     print(sections[0])
 
     counter = 0
@@ -18,14 +18,12 @@ def day4_1():
     print("Solution day 4.1:", counter)
 
 
-
 def day4_2():
-    file1 = open('input4_1.txt', 'r')
+    file1 = open("2022/day04/input4_1.txt", "r")
     lines = file1.readlines()
     lines = [l.strip() for l in lines]
 
-    sections = [ [ [int(w) for w in q.split('-')] for q in l.split(',')] for l in lines]
-    print(sections[0])
+    sections = [[[int(w) for w in q.split("-")] for q in l.split(",")] for l in lines]
 
     counter = 0
     for s in sections:
@@ -42,5 +40,6 @@ def day4_2():
     print("Solution day 4.2:", counter)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
+    day4_1()
     day4_2()
