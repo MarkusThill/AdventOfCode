@@ -26,7 +26,7 @@ def measure_runtime(script_path, runs=10):
 
 def main():
     root_directory = "./2023/"  # Change this to your desired root directory
-    runs = 10  # Number of times to run each script
+    runs = 20  # Number of times to run each script
 
     all_runtimes = {}  # Dictionary to store script filenames and their runtimes
 

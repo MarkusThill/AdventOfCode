@@ -76,7 +76,7 @@ def main():
     file_data_characters = {}
     for root, dirs, files in os.walk(root_directory):
         for file in files:
-            if file.endswith(".py"):
+            if file.endswith(".py") or file.endswith(".cpp"):
                 file_path = os.path.join(root, file)
                 lines, characters = count_lines_and_characters(file_path)
                 file_data_lines[file] = lines
