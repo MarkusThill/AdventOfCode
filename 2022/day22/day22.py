@@ -20,7 +20,7 @@ def fold_cube(flat_cube, n=1, visited=None):
 
     directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]  # x-y layout: right, left, down, up
 
-    '''
+    """
     n 3D we need to account for the third axis. Rotating a vector around the origin (a point) in 2D simply 
     means rotating it around the Z-axis (a line) in 3D; since we're rotating around Z-axis, 
     its coordinate should be kept constant i.e. 0° (rotation happens on the XY plane in 3D). 
@@ -37,7 +37,7 @@ def fold_cube(flat_cube, n=1, visited=None):
         |1     0           0| |x|   |        x        |   |x'|
         |0   cos θ    −sin θ| |y| = |y cos θ − z sin θ| = |y'|
         |0   sin θ     cos θ| |z|   |y sin θ + z cos θ|   |z'|
-    '''
+    """
     # Rotation matrices
     R_r = np.matrix([[0, 0, -1], [0, 1, 0], [1, 0, 0]])
     R_l = np.matrix([[0, 0, 1], [0, 1, 0], [-1, 0, 0]])
@@ -80,13 +80,17 @@ def fold_cube(flat_cube, n=1, visited=None):
         # get location vector and rotation matrix
         l, v = loc_vec[d], rot_mat[d]
         for k in ans.keys():
-            assert ans[k].min() == 0 and ans[k].max() == 1  # all elements have to be either 0 or 1
+            assert (
+                ans[k].min() == 0 and ans[k].max() == 1
+            )  # all elements have to be either 0 or 1
             solution[k] = l + v @ ans[k]
 
     return solution
 
 
-def find_side_neighbor(folded_cube: dict, side: int, direction: str, all_directions: list):
+def find_side_neighbor(
+    folded_cube: dict, side: int, direction: str, all_directions: list
+):
     assert len(folded_cube) == 6
     assert side in folded_cube
     assert direction in all_directions
@@ -121,7 +125,9 @@ def find_all_side_neighbors(folded_cube: dict):
     all_neighbors = dict()
     for s in folded_cube.keys():
         for d in directions:
-            neigh = find_side_neighbor(folded_cube, side=s, direction=d, all_directions=directions)
+            neigh = find_side_neighbor(
+                folded_cube, side=s, direction=d, all_directions=directions
+            )
             if s not in all_neighbors:
                 all_neighbors[s] = dict()
             all_neighbors[s][d] = neigh
@@ -132,12 +138,12 @@ def find_all_side_neighbors(folded_cube: dict):
 def check_all_neighbors(d1, d2):
     for k in d1.keys():
         for kk in d1[k].keys():
-            assert (d1[k][kk] == d2[k][kk])
+            assert d1[k][kk] == d2[k][kk]
     return True
 
 
-def read_problem_input(file='input22_1.txt'):
-    file1 = open(file, 'r')
+def read_problem_input(file="input22_1.txt"):
+    file1 = open(file, "r")
     lines = file1.readlines()
     lines = [l[:-1] for l in lines]
     instructions = lines[-1]
@@ -153,23 +159,31 @@ def read_problem_input(file='input22_1.txt'):
     lines = [l + " " * (max_line_length - len(l)) for l in lines]
     all_lines_length = [len(l) for l in lines]
     min_line_length, max_line_length = min(all_lines_length), max(all_lines_length)
-    if DEBUG: print("min_line_length", min_line_length, "max_line_length", max_line_length)
+    if DEBUG:
+        print("min_line_length", min_line_length, "max_line_length", max_line_length)
     assert min_line_length == max_line_length
 
     # count all elements not equal to ""
     sum_elements = sum([len(l.strip()) for l in lines])
     side_length = int(np.sqrt(sum_elements / 6))
-    if DEBUG: print("side length: ", side_length)
-    assert 6 * side_length ** 2 == sum_elements, "Side length appears to be wrong"
+    if DEBUG:
+        print("side length: ", side_length)
+    assert 6 * side_length**2 == sum_elements, "Side length appears to be wrong"
 
-    instructions = re.findall('\d+|\D+', instructions)
+    instructions = re.findall("\d+|\D+", instructions)
     instructions = [i if i.isalpha() else int(i) for i in instructions]
-    if DEBUG: print("Instructions: ", instructions)
+    if DEBUG:
+        print("Instructions: ", instructions)
     return lines, side_length, instructions
 
 
 class Node:
-    directions = {"north": (-1, 0), "east": (0, 1), "south": (1, 0), "west": (0, -1), }
+    directions = {
+        "north": (-1, 0),
+        "east": (0, 1),
+        "south": (1, 0),
+        "west": (0, -1),
+    }
 
     def __init__(self, ntype, row, column):
         # self.direction_change = dict(
@@ -193,7 +207,9 @@ def reverse_direction(direction):
     return mapping[direction]
 
 
-def build_graph(padded_lines, part=1, all_neighbors=None, simple_flat_cube=None, side_length=None):
+def build_graph(
+    padded_lines, part=1, all_neighbors=None, simple_flat_cube=None, side_length=None
+):
     if part == 2:
         assert all_neighbors is not None
         assert simple_flat_cube is not None
@@ -218,7 +234,11 @@ def build_graph(padded_lines, part=1, all_neighbors=None, simple_flat_cube=None,
                 for d in directions:
                     di, dj = directions[d]
                     i1, j1 = i + di, j + dj
-                    if 0 <= i1 < G.shape[0] and 0 <= j1 < G.shape[1] and G[i1, j1] is not None:
+                    if (
+                        0 <= i1 < G.shape[0]
+                        and 0 <= j1 < G.shape[1]
+                        and G[i1, j1] is not None
+                    ):
                         n.neighbors[d] = G[i1, j1]
                         continue
                     if part == 1:
@@ -239,7 +259,9 @@ def build_graph(padded_lines, part=1, all_neighbors=None, simple_flat_cube=None,
                             raise NotImplementedError()
                     elif part == 2:
                         # Where are we now (on which side of the cube)?
-                        side_id = map_coords_to_simple_flat_cube_idx(i, j, side_length, simple_flat_cube)
+                        side_id = map_coords_to_simple_flat_cube_idx(
+                            i, j, side_length, simple_flat_cube
+                        )
 
                         # If we go into direction d, where do we arrive on the simplified flat cube
                         side_id_new, celestial, reverse_axis = all_neighbors[side_id][d]
@@ -269,7 +291,9 @@ def build_graph(padded_lines, part=1, all_neighbors=None, simple_flat_cube=None,
                         ii, jj = ii[0], jj[0]
                         i1 = ii * side_length + i1_side
                         j1 = jj * side_length + j1_side
-                        G[i1, j1].direction_change[(i, j)] = reverse_direction(celestial)
+                        G[i1, j1].direction_change[(i, j)] = reverse_direction(
+                            celestial
+                        )
 
                     n.neighbors[d] = G[i1, j1]
 
@@ -300,7 +324,11 @@ def walk_graph(n, instructions, direction="east"):
             assert i in ["R", "L"]
             direction = cdm[direction][i]
 
-    return n.row + 1, n.column + 1, dict(zip(list(Node.directions.keys()), [3, 0, 1, 2]))[direction]
+    return (
+        n.row + 1,
+        n.column + 1,
+        dict(zip(list(Node.directions.keys()), [3, 0, 1, 2]))[direction],
+    )
 
 
 def get_change_direction_map():
@@ -309,8 +337,11 @@ def get_change_direction_map():
     roll_left = np.roll(dirs, +1)
     roll_left_right = list(zip(roll_left, roll_right))
 
-    change_dir_map = dict(zip(dirs, [dict(zip(["L", "R"], rl)) for rl in roll_left_right]))
-    if DEBUG: print(change_dir_map)
+    change_dir_map = dict(
+        zip(dirs, [dict(zip(["L", "R"], rl)) for rl in roll_left_right])
+    )
+    if DEBUG:
+        print(change_dir_map)
     return change_dir_map
 
 
@@ -324,7 +355,10 @@ def input_to_simple_flat_cube(padded_lines, side_length):
     counter = 1
     for i in range(S.shape[0]):
         for j in range(S.shape[1]):
-            sub = X[i * side_length:(i + 1) * side_length, j * side_length:(j + 1) * side_length]
+            sub = X[
+                i * side_length : (i + 1) * side_length,
+                j * side_length : (j + 1) * side_length,
+            ]
             if not (sub == " ").all():
                 S[i, j] = counter
                 counter += 1
@@ -396,8 +430,9 @@ def test_cube_folding():
             assert (expected[k] == ans[k]).all(), "Wrong! " + str(k)
 
 
-if __name__ == '__main__':
-    if DEBUG: test_cube_folding()
+if __name__ == "__main__":
+    if DEBUG:
+        test_cube_folding()
 
     padded_lines, side_length, instructions = read_problem_input()
 
@@ -409,7 +444,14 @@ if __name__ == '__main__':
     fc = fold_cube(sfc, n=6)
     all_neighbors = find_all_side_neighbors(fc)
 
-    n = build_graph(padded_lines, part=2, all_neighbors=all_neighbors, simple_flat_cube=sfc, side_length=side_length)
+    n = build_graph(
+        padded_lines,
+        part=2,
+        all_neighbors=all_neighbors,
+        simple_flat_cube=sfc,
+        side_length=side_length,
+    )
     row, column, facing = walk_graph(n, instructions)
-    if DEBUG: print("row, column, facing", row, column, facing)
+    if DEBUG:
+        print("row, column, facing", row, column, facing)
     print("Solution day 2:", 1000 * row + 4 * column + facing)

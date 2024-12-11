@@ -3,6 +3,7 @@ import time
 
 from itertools import cycle
 
+
 def print_board(elves, shape):
     Q = np.full(shape, ".")
     for e in elves.values():
@@ -14,7 +15,7 @@ def print_board(elves, shape):
 
 def day23_1():
     start_time = time.time()
-    file1 = open('input23_1.txt', 'r')
+    file1 = open("input23_1.txt", "r")
     lines = file1.readlines()
     lines = [l.strip() for l in lines]
 
@@ -40,21 +41,38 @@ def day23_1():
             new_pos_list = list()
             for direction in s2:
                 if direction == 0:
-                    if (i - 1, j) not in e_set and (i - 1, j - 1) not in e_set and (i - 1, j + 1) not in e_set:
+                    if (
+                        (i - 1, j) not in e_set
+                        and (i - 1, j - 1) not in e_set
+                        and (i - 1, j + 1) not in e_set
+                    ):
                         new_pos_list.append((i - 1, j))
                 elif direction == 1:
-                    if (i + 1, j) not in e_set and (i + 1, j - 1) not in e_set and (i + 1, j + 1) not in e_set:
+                    if (
+                        (i + 1, j) not in e_set
+                        and (i + 1, j - 1) not in e_set
+                        and (i + 1, j + 1) not in e_set
+                    ):
                         new_pos_list.append((i + 1, j))
                 elif direction == 2:
-                    if (i, j - 1) not in e_set and (i - 1, j - 1) not in e_set and (i + 1, j - 1) not in e_set:
+                    if (
+                        (i, j - 1) not in e_set
+                        and (i - 1, j - 1) not in e_set
+                        and (i + 1, j - 1) not in e_set
+                    ):
                         new_pos_list.append((i, j - 1))
                 elif direction == 3:
-                    if (i, j + 1) not in e_set and (i - 1, j + 1) not in e_set and (i + 1, j + 1) not in e_set:
+                    if (
+                        (i, j + 1) not in e_set
+                        and (i - 1, j + 1) not in e_set
+                        and (i + 1, j + 1) not in e_set
+                    ):
                         new_pos_list.append((i, j + 1))
 
             if 0 < len(new_pos_list) < len(s2):
                 idx = new_pos_list[0]
-                if idx not in c_pos: c_pos[idx] = 0
+                if idx not in c_pos:
+                    c_pos[idx] = 0
                 c_pos[idx] += 1
                 new_elves[e] = idx
 
@@ -85,5 +103,5 @@ def day23_1():
     print("Time: ", round(time.time() - start_time, 2), "seconds!")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     day23_1()

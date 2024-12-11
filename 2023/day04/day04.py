@@ -21,7 +21,7 @@ def day04():
     cards = {cid: c for cid, c in zip(ids, cards)}
 
     points = {
-        cid: len(c["winning"].intersection(c["mine"])) for cid, c, in cards.items()
+        cid: len(c["winning"].intersection(c["mine"])) for cid, c in cards.items()
     }
 
     solution_1 = sum([int(2 ** (-1 + p)) for p in points.values()])

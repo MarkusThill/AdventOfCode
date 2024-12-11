@@ -1,27 +1,34 @@
 import numpy as np
 
+
 def day18_1():
-    file1 = open('input18_1.txt', 'r')
+    file1 = open("input18_1.txt", "r")
     lines = file1.readlines()
     lines = [l.strip() for l in lines]
-    lines = [l.split(',') for l in lines]
+    lines = [l.split(",") for l in lines]
     lines = [[int(q) for q in l] for l in lines]
 
     X = np.zeros((30, 30, 30), dtype=np.int64)
 
     for l in lines:
         x, y, z = tuple(l)
-        X[x + 1, y + 1, z + 1] = 1  # Otherwise we would not find those surfaces located at 0
+        X[x + 1, y + 1, z + 1] = (
+            1  # Otherwise we would not find those surfaces located at 0
+        )
 
-    print("Solution day 18.1",
-          np.abs(np.diff(X, axis=-1)).sum() + np.abs(np.diff(X, axis=-2)).sum() + np.abs(np.diff(X, axis=0)).sum())
+    print(
+        "Solution day 18.1",
+        np.abs(np.diff(X, axis=-1)).sum()
+        + np.abs(np.diff(X, axis=-2)).sum()
+        + np.abs(np.diff(X, axis=0)).sum(),
+    )
 
 
 def day18_2():
-    file1 = open('input18_1.txt', 'r')
+    file1 = open("input18_1.txt", "r")
     lines = file1.readlines()
     lines = [l.strip() for l in lines]
-    lines = [l.split(',') for l in lines]
+    lines = [l.split(",") for l in lines]
     lines = [[int(q) for q in l] for l in lines]
 
     N = np.array(lines).max() + 3
@@ -29,7 +36,9 @@ def day18_2():
 
     for l in lines:
         x, y, z = tuple(l)
-        X[x + 1, y + 1, z + 1] = 1  # Otherwise we would not find those surfaces located at 0
+        X[x + 1, y + 1, z + 1] = (
+            1  # Otherwise we would not find those surfaces located at 0
+        )
 
     # Sort of a BFS flood-fill algo..
     do_set = set()
@@ -67,11 +76,14 @@ def day18_2():
     for i in done_set:
         Q[i] = 1
     Q = 1 - Q  # Invert..
-    surface_total = np.abs(np.diff(Q, axis=0)).sum() + np.abs(np.diff(Q, axis=1)).sum() + np.abs(
-        np.diff(Q, axis=2)).sum()
+    surface_total = (
+        np.abs(np.diff(Q, axis=0)).sum()
+        + np.abs(np.diff(Q, axis=1)).sum()
+        + np.abs(np.diff(Q, axis=2)).sum()
+    )
 
     print(surface_total, N * N * N)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     day18_2()

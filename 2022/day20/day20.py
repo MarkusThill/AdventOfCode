@@ -1,5 +1,5 @@
 def day20_1():
-    file1 = open('input20_1.txt', 'r')
+    file1 = open("input20_1.txt", "r")
     lines = file1.readlines()
     lines = [l.strip() for l in lines]
 
@@ -20,7 +20,7 @@ def day20_1():
 
 
 def day20_2():
-    file1 = open('input20_1.txt', 'r')
+    file1 = open("input20_1.txt", "r")
     lines = file1.readlines()
     lines = [l.strip() for l in lines]
 
@@ -41,6 +41,6 @@ def day20_2():
     print("Solution day 20.2:", sol)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     day20_1()
     day20_2()

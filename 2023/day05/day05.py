@@ -56,9 +56,7 @@ def day05():
                 map_from,
                 _,
                 map_to,
-            ) = l[
-                :-5
-            ].split("-")
+            ) = l[:-5].split("-")
             mapper[map_from] = dict()
             mapper[map_from][map_to] = list()
         else:

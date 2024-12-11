@@ -5,7 +5,7 @@ from collections import deque
 
 def day24_1():
     start_time = time.time()
-    file1 = open('input24_1.txt', 'r')
+    file1 = open("input24_1.txt", "r")
     lines = file1.readlines()
     lines = [l.strip() for l in lines]
 
@@ -85,13 +85,13 @@ def day24_1():
         elif s_i == X.shape[0] - 1 and s_j == X.shape[1] and s_end and s_start:
             solution_p2 = s_t
             break
-        elif s_i == - 1 and s_j == 0 and s_end and not s_start:
+        elif s_i == -1 and s_j == 0 and s_end and not s_start:
             s_start = True
 
         # generate new states to visit
         for di, dj in [(0, 0), (1, 0), (0, 1), (0, -1), (-1, 0)]:
             s_new = (s_i + di, s_j + dj)
-            s_s = (s_t+1, s_i + di, s_j + dj, s_end, s_start)
+            s_s = (s_t + 1, s_i + di, s_j + dj, s_end, s_start)
             if 0 <= s_new[0] < X.shape[0] and 0 <= s_new[1] < X.shape[1]:
                 if s_new not in b_t1 and s_s not in visited:
                     dq.append(s_s)
@@ -105,5 +105,5 @@ def day24_1():
     print("Solution part 2:", solution_p2)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     day24_1()
