@@ -2,8 +2,8 @@ from itertools import pairwise
 
 
 def is_safe(report: list[int]) -> bool:
-    """Checks, if a report is safe. 
-    
+    """Checks, if a report is safe.
+
     Safety can be assumed if:
         - The levels are either all strictly increasing or all strictly decreasing.
         - The difference between any two adjacent levels is between 1 and 3 (inclusive).
@@ -13,12 +13,13 @@ def is_safe(report: list[int]) -> bool:
 
     Returns:
         bool: True, if the report is safe, otherwise False.
-    """    
+    """
     return all(-3 <= dd < 0 for dd in report) or all(0 < dd <= 3 for dd in report)
 
 
 def sign(x: int) -> int:
-    """
+    """Returns the sign of a number.
+
     Returns the sign of a number:
     - 1 if x is positive,
     - -1 if x is negative,

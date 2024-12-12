@@ -5,8 +5,8 @@ You can find the original problem statement here: [https://adventofcode.com/2024
 ## Part One
 The task involves analyzing reactor reports to determine how many are "safe." Each report is a list of numerical levels. A report is considered safe if:
 
-The levels are either all strictly increasing or all strictly decreasing.
-The difference between any two adjacent levels is between 1 and 3 (inclusive).
+- The levels are either all strictly increasing or all strictly decreasing.
+- The difference between any two adjacent levels is between 1 and 3 (inclusive).
 For example, in the provided data, only 2 out of 6 reports meet these criteria.
 
 ## Part Two
