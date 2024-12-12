@@ -2,6 +2,18 @@ from itertools import pairwise
 
 
 def is_safe(report: list[int]) -> bool:
+    """Checks, if a report is safe. 
+    
+    Safety can be assumed if:
+        - The levels are either all strictly increasing or all strictly decreasing.
+        - The difference between any two adjacent levels is between 1 and 3 (inclusive).
+
+    Args:
+        report (list[int]): One report as a list of integers.
+
+    Returns:
+        bool: True, if the report is safe, otherwise False.
+    """    
     return all(-3 <= dd < 0 for dd in report) or all(0 < dd <= 3 for dd in report)
 
 
