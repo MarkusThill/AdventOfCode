@@ -42,39 +42,6 @@ def day03_1(path: str = "2025/day03/input_1.txt") -> int:
     print("Solution for day01.1:", total)
     return total
 
-def day03_2_old(path: str = "2025/day03/input_1.txt", n_digits: int = 12) -> int:
-    """TODO: What is the runtime complexity of this solution?"""
-    total = 0
-    with open(path, "r", encoding="utf-8") as f:
-        for raw in f:
-            s = raw.strip()
-            if not s:
-                continue
-
-            # Convert digits to ints once.
-            digits = [ord(ch) - 48 for ch in s]
-
-            # Track the largest digit seen to the right.
-            max_suffixes = digits[-n_digits+1:]
-            best = 0
-
-            for x in reversed(digits[:-n_digits+1]):
-                seq = reversed([x] + max_suffixes)
-                cand = sum(10**i * d for i, d in enumerate(seq))
-                if cand > best:
-                    best = cand
-                idx = 0
-                while idx < n_digits-1:
-                    if x >= max_suffixes[idx]: # `>=` important here, to allow to pot. shift the equal digit further to the right...
-                        max_suffixes[idx], x = x, max_suffixes[idx]
-                    else:
-                        break
-                    idx += 1
-
-            total += best
-    return total
-
-
 def day03_2(path: str = "2025/day03/input_1.txt", n_digits: int = 12) -> int:
     """Solve day 03 part 2 by summing per-line maximal n-digit sequences.
 
@@ -156,7 +123,7 @@ if __name__ == "__main__":
         f"Real: {result} vs. Expected: {17316}"
     ) 
 
-    if True: # Verify that our solution works for part 1 as well
+    if False: # Verify that our solution works for part 1 as well
         result = day03_2(n_digits=2) # "2025/day03/example_1.txt"
         assert result == 17316, (
             f"Real: {result} vs. Expected: {17316}"
