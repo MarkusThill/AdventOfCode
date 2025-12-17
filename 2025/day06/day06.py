@@ -4,7 +4,6 @@ import math
 from itertools import zip_longest
 
 
-
 def day06_1(path: str = "2025/day06/input_1.txt") -> int:
     """Solve Day 06, Part 1.
 
