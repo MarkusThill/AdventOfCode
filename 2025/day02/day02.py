@@ -289,11 +289,12 @@ if __name__ == "__main__":
     end = time.perf_counter()
     print(f"Time for day02_2: {end - start: .3f} seconds")
 
-    # Compute solution for part 1 with this function as well:
-    start = time.perf_counter()
-    result = day02_2(allowed_pattern_reps={2})  # "2025/day02/example_1.txt"
-    assert result == 38310256125, (
-        f"Real: {result} vs. Expected: {38310256125}"
-    )  # -> correct
-    end = time.perf_counter()
-    print(f"Time for day02_2: {end - start: .3f} seconds")
+    if False:  # remove for runtimes measurement
+        # Compute solution for part 1 with this function as well:
+        start = time.perf_counter()
+        result = day02_2(allowed_pattern_reps={2})  # "2025/day02/example_1.txt"
+        assert result == 38310256125, (
+            f"Real: {result} vs. Expected: {38310256125}"
+        )  # -> correct
+        end = time.perf_counter()
+        print(f"Time for day02_2: {end - start: .3f} seconds")

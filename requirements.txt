@@ -2,6 +2,7 @@
 pre-commit
 readme_renderer[md]
 pydoclint
+matplotlib
 mkdocs
 mkdocstrings[python]
 mkdocs-material
