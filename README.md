@@ -1,4 +1,4 @@
-<img src="https://github.com/MarkusThill/AdventOfCode/blob/6dc1e68068cb6a0e60cafa706c8d86c20ef0dfe9/adventofcode.png" width="500" height="500">
+<img src="https://github.com/MarkusThill/AdventOfCode/blob/4e35a79d0652b9c88ba74ea9a8833e2d0df614c2/adventofcode.png" width="500" height="500">
 
 # Advent Of Code
 Solutions for the Advent of Code Problems.
