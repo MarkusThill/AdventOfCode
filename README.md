@@ -12,6 +12,6 @@ Advent whispers challenge sweet,
 Logic dances free.
 </i>
 -- Japanese Haiku
-Unknown, anno Domini 1547 
+Pseudo-Bashō, De Haiku et Algorithmi, anno Domini 1547 
 </pre>
 
