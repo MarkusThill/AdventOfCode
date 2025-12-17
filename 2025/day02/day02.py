@@ -1,27 +1,90 @@
+"""
+Advent of Code 2025 — Day 02 solutions.
+
+This module contains optimized reference implementations for both parts of
+the Day 02 puzzle. The solutions focus on efficient numeric construction and
+tight iteration bounds to avoid unnecessary string allocations, repeated
+parsing, and brute-force enumeration.
+
+Compared to many naïve or string-based solutions commonly found online, these
+implementations are **significantly faster in practice**, especially for large
+input ranges. The performance gains mainly come from:
+- constructing repeated patterns numerically instead of via string repetition,
+- aggressively tightening lower and upper bounds for candidate patterns, and
+- minimizing work in the innermost loops.
+
+That said, while the current implementations are already highly efficient,
+there is still room for further optimization (e.g., reducing range iteration
+even more or deriving additional closed-form bounds).
+
+Functions:
+    day02_1:
+        Solves part 1 by summing numbers formed by repeating a pattern exactly
+        twice within given ranges.
+
+    day02_2:
+        Generalized solution for part 2, supporting arbitrary repetition counts
+        and reuse of the part 1 logic.
+
+    _add_repeated_pattern_ids_in_range:
+        Internal helper that efficiently constructs and filters repeated-pattern
+        numbers within a numeric interval.
+
+The `__main__` section includes simple timing measurements to demonstrate the
+runtime characteristics of the solutions.
+"""
+
 from __future__ import annotations
+
 import time
 
 
-def day02_1(
-    path: str = "2025/day02/input_1.txt",
-) -> int:
-    with open(path, "r", encoding="utf-8") as f:
-        lines = f.readlines()
+def day02_1(path: str = "2025/day02/input_1.txt") -> int:
+    """Solve day 02 part 1.
 
-    list_id = [line.strip().split(",") for line in lines][0]
-    list_id = [tuple(int(i) for i in entry.strip().split("-")) for entry in list_id]
-    summ = 0
-    for start, end in list_id:
-        # TODO: extract function
+    The input file is expected to contain a single line with comma-separated
+    numeric ranges in the form::
+
+        start-end,start-end,...
+
+    For each range, this function sums all numbers that can be formed by
+    repeating a decimal pattern **exactly twice** (e.g., ``12 -> 1212``),
+    provided the resulting number lies within the inclusive range
+    ``[start, end]``.
+
+    The pattern length is inferred from the digit lengths of ``start`` and
+    ``end``, and bounds are carefully adjusted to ensure only valid repeated
+    patterns are considered.
+
+    Args:
+        path: Path to the input file containing the range specification.
+
+    Returns:
+        The sum of all valid repeated-pattern numbers across all ranges.
+    """
+    with open(path, "r", encoding="utf-8") as f:
+        first_line = f.readline().strip()
+
+    ranges = [
+        tuple(int(x) for x in entry.strip().split("-"))
+        for entry in first_line.split(",")
+        if entry.strip()
+    ]
+
+    total = 0
+
+    for start, end in ranges:
         str_start = str(start)
         str_end = str(end)
-        max_pattern_len = len(str_end) // 2
-        min_pattern_len = len(str_start) // 2 + len(str_start) % 2
 
-        # Should always be both odd to be true:
+        max_pattern_len = len(str_end) // 2
+        min_pattern_len = len(str_start) // 2 + (len(str_start) % 2)
+
+        # If no valid pattern length exists, skip this range.
         if max_pattern_len < min_pattern_len:
             continue
 
+        # Compute candidate minimum pattern value.
         min_pattern_value = int(str_start[:min_pattern_len])
         if (
             min_pattern_value < int(str_start[min_pattern_len:])
@@ -30,10 +93,12 @@ def day02_1(
         ):
             min_pattern_value += 1
 
+        # Compute candidate maximum pattern value.
         max_pattern_value = int(str_end[:max_pattern_len])
         if max_pattern_value > int(str_end[max_pattern_len:]):
             max_pattern_value -= 1
 
+        # Adjust bounds when the digit count is odd.
         if len(str_end) % 2 == 1:
             max_pattern_value = int("9" * max_pattern_len)
         if len(str_start) % 2 == 1:
@@ -42,16 +107,18 @@ def day02_1(
         if min_pattern_value > max_pattern_value:
             continue
 
-        # Naive loop first:
+        # Numeric construction of a doubled pattern:
+        #   idxidx = idx * 10^k + idx = idx * (10^k + 1)
+        pow10k_plus_1 = 10**max_pattern_len + 1
+
         for idx in range(min_pattern_value, max_pattern_value + 1):
-            pattern = int(2 * str(idx))
+            pattern = idx * pow10k_plus_1
             if pattern > end:
                 break
+            total += pattern
 
-            summ += pattern
-
-    print("Solution for day02.1:", summ)
-    return summ
+    print("Solution for day02.1:", total)
+    return total
 
 
 def _add_repeated_pattern_ids_in_range(
