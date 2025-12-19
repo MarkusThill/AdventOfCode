@@ -167,7 +167,7 @@ def day11_2(
     indeg: dict[str, int] = {n: 0 for n in nodes}
 
     # Count incoming edges by scanning all adjacency lists
-    for u, vs in graph.items():
+    for vs in graph.values():
         for v in vs:
             indeg[v] += 1
 
