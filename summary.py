@@ -26,9 +26,10 @@ def process_directory(directory):
 
 
 def plot_subplots(file_data_lines, file_data_characters):
-    names = list(file_data_lines.keys())
-    values_lines = list(file_data_lines.values())
-    values_characters = list(file_data_characters.values())
+    # Sort by filename (x-axis labels)
+    names = sorted(file_data_lines.keys())
+    values_lines = [file_data_lines[name] for name in names]
+    values_characters = [file_data_characters[name] for name in names]
 
     fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8), sharex=True)
 
@@ -66,11 +67,12 @@ def plot_subplots(file_data_lines, file_data_characters):
 
     plt.xticks(rotation=45, ha="right")
     plt.tight_layout()
+    plt.savefig("summary.png")
     plt.show()
 
 
 def main():
-    root_directory = "./2022/"  # Change this to your desired root directory
+    root_directory = "./2025/"  # Change this to your desired root directory
 
     file_data_lines = {}
     file_data_characters = {}

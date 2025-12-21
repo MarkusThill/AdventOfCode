@@ -25,7 +25,7 @@ def measure_runtime(script_path, runs=10):
 
 
 def main():
-    root_directory = "./2022/"  # Change this to your desired root directory
+    root_directory = "./2025/"  # Change this to your desired root directory
     runs = 2  # Number of times to run each script
 
     all_runtimes = {}  # Dictionary to store script filenames and their runtimes
@@ -51,8 +51,9 @@ def plot_mean_runtime_bar_chart(all_runtimes):
         script: statistics.stdev(runtimes) for script, runtimes in all_runtimes.items()
     }
 
-    names = list(means.keys())
-    values = list(means.values())
+    # Sort by script name (x-axis labels)
+    names = sorted(means.keys())
+    values = [means[name] for name in names]
     std_dev_values = [std_devs[name] for name in names]
 
     plt.figure(figsize=(10, 6))
@@ -86,6 +87,7 @@ def plot_mean_runtime_bar_chart(all_runtimes):
     plt.grid(axis="y", linestyle="--", alpha=0.7)
 
     plt.tight_layout()
+    plt.savefig("runtimes.png")
     plt.show()
 
 
