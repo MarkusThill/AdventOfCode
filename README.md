@@ -30,6 +30,22 @@ The original problem descriptions for 2025 can all be found here:
 ### Approximate Execution Times for the Individual Solutions
 <img src="https://github.com/MarkusThill/AdventOfCode/blob/main/2025/png/summary_exc.png" width="1000">
 
+### Machine (also used for 2023 & 2022)
+
+```
++------------------+-------------------------------------------+
+| OS               | Linux 6.6.87.2-microsoft-standard-WSL2    |
+| Distribution     | Ubuntu 22.04.4 LTS                        |
+| Architecture     | x86_64                                    |
+| CPU              | x86_64                                    |
+| Cores (phys/log) | 2 / 4                                     |
+| RAM              | 8 GiB                                     |
+| GPU              | None / Unknown                            |
+| Python           | CPython 3.11.0rc1                         |
+| Compiler         | gcc (Ubuntu 13.1.0-8ubuntu1~22.04) 13.1.0 |
+| Fingerprint      | ea68f7b392a21300                          |
++------------------+-------------------------------------------+
+```
 
 
 # Advent Of Code: 2023
