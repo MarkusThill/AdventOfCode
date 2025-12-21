@@ -32,6 +32,9 @@ The original problem descriptions for 2025 can all be found here:
 
 ### Machine (also used for 2023 & 2022)
 
+**FUJITSU LIFEBOOK N532** from 2012.
+
+Output of `machine_info.py`:
 ```
 +------------------+-------------------------------------------+
 | OS               | Linux 6.6.87.2-microsoft-standard-WSL2    |
@@ -45,6 +48,31 @@ The original problem descriptions for 2025 can all be found here:
 | Compiler         | gcc (Ubuntu 13.1.0-8ubuntu1~22.04) 13.1.0 |
 | Fingerprint      | ea68f7b392a21300                          |
 +------------------+-------------------------------------------+
+```
+
+Output of `systeminfo` on windows CMD (reformatted):
+```
+┌────────────────────────┬────────────────────────────────────────────────┐
+│ Manufacturer / Model   │ FUJITSU LIFEBOOK N532                          │
+│ System Type            │ x64-based PC                                   │
+│ BIOS                   │ AMI 1.12A (02.07.2012)                         │
+├────────────────────────┼────────────────────────────────────────────────┤
+│ Operating System       │ Windows 10 Pro                                 │
+│ OS Version             │ 10.0.19045 (Build 19045)                       │
+│ Install Date           │ 25.08.2020                                     │
+│ Time Zone              │ UTC+01:00 (Central Europe)                     │
+├────────────────────────┼────────────────────────────────────────────────┤
+│ CPU                    │ Intel Core (Family 6, Model 58)                │
+│ Nominal Frequency      │ ~2.9 GHz                                       │
+│ CPU Count              │ 1 physical processor                           │
+├────────────────────────┼────────────────────────────────────────────────┤
+│ Physical Memory        │ 16 GB RAM                                      │
+│ Available Memory       │ ~6 GB                                          │
+│ Virtual Memory (Max)   │ ~20 GB                                         │
+├────────────────────────┼────────────────────────────────────────────────┤
+│ Virtualization         │ Hypervisor detected (Hyper-V / WSL active)     │
+│ Domain                 │ WORKGROUP                                      │
+└────────────────────────┴────────────────────────────────────────────────┘
 ```
 
 
