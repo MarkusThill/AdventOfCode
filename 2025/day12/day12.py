@@ -9,7 +9,7 @@ def day12_1(path: str = "2025/day12/input_1.txt") -> int:
     The input file consists of two sections:
 
     1. **Shape definitions** (first 30 lines):
-       Six shapes are defined, each with an identifier and a 3×3 character
+       Six shapes are defined, each with an identifier and a 3x3 character
        representation. These shapes are parsed and stored as NumPy arrays
        for completeness, although they are not directly used in the area
        checks performed in this solution.
@@ -24,7 +24,7 @@ def day12_1(path: str = "2025/day12/input_1.txt") -> int:
     The algorithm proceeds as follows:
 
     - First, a **conservative upper bound** is applied by assuming that every
-      shape occupies a full 3×3 area (9 tiles), even though each shape
+      shape occupies a full 3x3 area (9 tiles), even though each shape
       actually covers only 7 tiles. If the total conservative area of all
       shapes is still smaller than the region area, the shapes are guaranteed
       to fit.
