@@ -359,7 +359,7 @@ if __name__ == "__main__":
 
     result_2 = day10_2()  # "2025/day10/example_1.txt"
     assert result_2 == 17424, f"Real: {result_2} vs. Expected: {17424}"
-    print("Solution for day09.2:", result_2)
+    print("Solution for day10.2:", result_2)
 
 
 def day10_1_prototype(
