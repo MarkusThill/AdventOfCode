@@ -25,10 +25,10 @@ The original problem descriptions for 2025 can all be found here:
 
 ## Stats
 ### Lines of Code (LOC) for the Individual Solutions
-<img src="https://github.com/MarkusThill/AdventOfCode/blob/main/2023/png/summary_loc.png" width="1000">
+<img src="https://github.com/MarkusThill/AdventOfCode/blob/main/2025/png/summary_loc.png" width="1000">
 
 ### Approximate Execution Times for the Individual Solutions
-<img src="https://github.com/MarkusThill/AdventOfCode/blob/main/2023/png/summary_exc.png" width="1000">
+<img src="https://github.com/MarkusThill/AdventOfCode/blob/main/2025/png/summary_exc.png" width="1000">
 
 
 
