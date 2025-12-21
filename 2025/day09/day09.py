@@ -305,7 +305,6 @@ if __name__ == "__main__":
     assert result_1 == 4754955192, f"Real: {result_1} vs. Expected: {4754955192}"
     print("Solution for day09.1:", result_1)
 
-    start = time.time()
     result_2 = day09_2()  # "2025/day09/example_1.txt"
     assert result_2 == 1568849600, f"Real: {result_2} vs. Expected: {1568849600}"
-    end = time.time()
+    print("Solution for day09.2:", result_2)
